@@ -25,8 +25,10 @@ class Game:
         is_t1_w = r.random() <= self.game_prob()
         
         # Step 3 edit records and outcomes
-        self.team1.set_record(is_t1_w, self.isDivG)
-        self.team2.set_record(not is_t1_w, self.isDivG)
+        if isDivG: 
+            if is_t1_w: self.team1.set_div_wins()
+            else: self.team2.set_div_wins()
+
         self.team1.append_outcomes(t2_wp if is_t1_w else -1 * t2_wp)
         self.team2.append_outcomes(-1 * t1_wp if is_t1_w else t1_wp)
 

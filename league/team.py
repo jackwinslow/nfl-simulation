@@ -13,7 +13,7 @@ class Team:
     schedule = []
 
     current_record = [0, 0]
-    division_record = [0, 0]
+    div_wins = 0
     # strength of schedule
     sos = 0.0
     
@@ -119,19 +119,16 @@ class Team:
     def set_morale_level(self):
         self.moral_levele += 1
 
-    """
     def set_record(self):
         win_count = len([w for w in self.outcomes.get_skill_level() if w > 0])
         loss_count = len(self.outcomes) - win_count
         return [win_count, loss_count]
-    """
-    
+
     def append_outcomes(self, outcome):
         self.outcomes.append(outcome)
 
-    def set_record(self, isWin, isDivGame):
-        self.current_record[0 if isWin else 1] += 1
-        if isDivGame: self.division_record[0 if isWin else 1] += 1
+    def set_div_wins(self):
+        self.div_wins += 1
 
     def set_skill_level(self):
         change = sum([x for x in self.outcomes.get_skill_level()])
