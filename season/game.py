@@ -32,7 +32,10 @@ class Game:
         self.team1.append_outcomes(t2_wp if is_t1_w else -1 * t2_wp)
         self.team2.append_outcomes(-1 * t1_wp if is_t1_w else t1_wp)
 
-        # Step 4 set win probs
+        # Step 4 set win probs for next game
+        """ might be smart to have a process for whether it's a playoff game
+            as the team that's eliminated shouldn't calculate their win
+            prob as it's irrelevant """
         self.team1.set_win_prob()
         self.team2.set_win_prob()
         
