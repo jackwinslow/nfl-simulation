@@ -22,8 +22,6 @@ class Team:
     i_skill_level = 0.0
     win_prob = 0.0
 
-    matchup_factor = 0.0
-
     injuries = []
     health_level = 0.0
 
@@ -126,9 +124,6 @@ class Team:
 
     def get_name(self):
         return self.name
-
-    def get_matchup_factor(self):
-        return self.matchup_factor
 
     def get_morale(self):
         return self.moral_level
