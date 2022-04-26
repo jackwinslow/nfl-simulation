@@ -25,12 +25,15 @@ class Game:
         is_t1_w = r.random() <= self.game_prob()
         
         # Step 3 edit records and outcomes
-        if isDivG: 
-            if is_t1_w: self.team1.set_div_wins()
-            else: self.team2.set_div_wins()
+        if is_t1_w:
+            t1_wp *= -1
+            if isDivG: self.team1.set_div_wins()
+        else:
+            t2_wp *= -1
+            if isDivG: self.team2.set_div_wins()
 
-        self.team1.append_outcomes(t2_wp if is_t1_w else -1 * t2_wp)
-        self.team2.append_outcomes(-1 * t1_wp if is_t1_w else t1_wp)
+        self.team1.append_outcomes(t2_wp)
+        self.team2.append_outcomes(t1_wp)
 
         # Step 4 set win probs for next game
         """ might be smart to have a process for whether it's a playoff game

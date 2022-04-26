@@ -74,10 +74,8 @@ class Team:
         self.set_health_level()
         self.set_morale_level()
         self.set_homefield_advantage()
-        self.win_prob = 0.5 * self.skill_level
-        self.win_prob += 0.35 * self.health_level
-        self.win_prob += 0.10 * self.morale_level
-        self.win_prob += 0.05 * self.homefield_advantage
+        self.win_prob = 0.5 * self.skill_level + 0.35 * self.health_level
+        self.win_prob += 0.10 * self.morale_level + 0.05 * self.homefield_advantage
 
     def set_division_rank(self, rank):
         self.division_rank = rank

@@ -1,7 +1,10 @@
 import random as r 
+import league
 from season.regular_season import RegularSeason
 from season.week import Week
 from season.game import Game
+
+NFL = league.League()
 
 def main():
     rs = RegularSeason([Week([Game("Patriots","Jets"),Game("Bills","Giants"),Game("Dolphins","Rams")]),
