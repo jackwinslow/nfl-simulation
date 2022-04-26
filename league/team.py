@@ -13,17 +13,21 @@ class Team:
     schedule = []
 
     current_record = [0, 0]
+    division_record = [0, 0]
+    # strength of schedule
+    sos = 0.0
+    
     outcomes = []
-
     skill_level = 0.0
     i_skill_level = 0.0
+    win_prob = 0.0
 
     matchup_factor = 0.0
 
     injuries = []
     health_level = 0.0
 
-    moral_level = 0.0
+    morale_level = 0.0
 
     homefield_advantage = 0.0
     capacity_filled = 0.0
@@ -92,23 +96,54 @@ class Team:
 
     def get_record(self):
         return self.current_record
+    
+    def get_div_record(self):
+        return self.division_record
+
+    def get_win_prob(self):
+        return self.win_prob
 
     def set_i_skill_level(self):
         prev_influence = 1.0 - (self.get_prev_szn_rank() / 100.0)
         return self.improvement_level + prev_influence
 
+    def get_health_level(self):
+        return self.health_level
+
+    def set_health_level(self):
+        self.health_level += 1
+
+    def set_homefield_advantage(self):
+        self.homefield_advantage += 1
+
+    def set_morale_level(self):
+        self.moral_levele += 1
+
+    """
     def set_record(self):
         win_count = len([w for w in self.outcomes.get_skill_level() if w > 0])
         loss_count = len(self.outcomes) - win_count
         return [win_count, loss_count]
+    """
+    
+    def append_outcomes(self, outcome):
+        self.outcomes.append(outcome)
+
+    def set_record(self, isWin, isDivGame):
+        self.current_record[0 if isWin else 1] += 1
+        if isDivGame: self.division_record[0 if isWin else 1] += 1
 
     def set_skill_level(self):
         change = sum([x for x in self.outcomes.get_skill_level()])
         WL_factor = (len(self.outcomes)/21) * change 
         self.skill_level = self.i_skill_level + WL_factor  
 
-    def set_win_prob(self, opponent):
-        win_prob = 0.5 * self.skill_level
-        win_prob += 0.2 * (opponent.get_matchup_factor() + self.health_level)
-        win_prob += 0.08 * self.moral_level
-        win_prob += 0.02 * self.homefield_advantage
+    def set_win_prob(self):
+        self.set_skill_level()
+        self.set_health_level()
+        self.set_morale_level()
+        self.set_homefield_advantage()
+        self.win_prob = 0.5 * self.skill_level
+        self.win_prob += 0.4 * self.health_level
+        self.win_prob += 0.08 * self.morale_level
+        self.win_prob += 0.02 * self.homefield_advantage
