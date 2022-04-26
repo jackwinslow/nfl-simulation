@@ -1,10 +1,10 @@
 import random as r
-from league import Team
+from league import team
 
 class Game:
 
-    team1 = Team()
-    team2 = Team()
+    team1 = team.Team()
+    team2 = team.Team()
     isDivG = False
     
     # default constructor
