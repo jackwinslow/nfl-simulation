@@ -2,7 +2,7 @@ import random as r
 
 class Playoffs:
 
-    playoffs = 2
+    # maybe break it down by playoff rounds 
 
     def __init__(self):
         self.playoffs = 3
