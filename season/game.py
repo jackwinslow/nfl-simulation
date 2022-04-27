@@ -19,10 +19,13 @@ class Game:
         # Step 1 Calculate prob of team1 beating team2
         t1_wp = self.team1.get_win_prob()
         t2_wp = self.team2.get_win_prob()
-        p_t1_w = (t1_wp * (1 - t2_wp)) / ((t1_wp * (1 - t2_wp)) + (t2_wp * (1 - t1_wp)))
+        """ I don't think there is an actual mathematical calculation to do here since they
+            are not independent events, so although this is arbitrary it puts out a better
+            compared to my last calculation output """
+        p_t1_w = t1_wp / (t1_wp + t2_wp)
         
         # Step 2 Play the game, boolean variable is true if team1 wins
-        is_t1_w = r.random() <= self.game_prob()
+        is_t1_w = r.random() <= p_t1_w
         
         # Step 3 edit records and outcomes
         if is_t1_w:
