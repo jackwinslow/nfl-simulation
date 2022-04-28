@@ -20,7 +20,7 @@ class Team:
     outcomes = []
     skill_level = 0.0
     i_skill_level = 0.0
-    win_prob = 0.0
+    win_level = 0.0
 
     injuries = []
     health_level = 0.0
@@ -39,6 +39,9 @@ class Team:
         self.name = name
         self.conference = conference
         self.division = division
+    
+    def __init__(self):
+        self.name = None
 
     def append_outcomes(self, outcome):
         self.outcomes.append(outcome)
@@ -69,13 +72,14 @@ class Team:
         WL_factor = (len(self.outcomes)/21) * change 
         self.skill_level = self.i_skill_level + WL_factor  
 
-    def set_win_prob(self):
+    def set_win_level(self, isHome):
         self.set_skill_level()
         self.set_health_level()
         self.set_morale_level()
         self.set_homefield_advantage()
-        self.win_prob = 0.5 * self.skill_level + 0.35 * self.health_level
-        self.win_prob += 0.10 * self.morale_level + 0.05 * self.homefield_advantage
+        self.win_level = 0.5 * self.skill_level + 0.35 * self.health_level
+        self.win_level += 0.10 * self.morale_level
+        self.win_level += (1 if isHome else 0) * 0.05 * self.homefield_advantage
 
     def set_division_rank(self, rank):
         self.division_rank = rank
@@ -99,8 +103,8 @@ class Team:
     def get_division(self):
         return self.division
     
-    def get_win_prob(self): 
-        return self.health_level + self.moral_level + self.skill_level
+    def get_win_level(self): 
+        return self.win_level
     
     def get_prev_szn_rank(self):
         return self.prev_szn_rank

@@ -141,6 +141,20 @@ class League:
         if division == self.AFC_EAST:
             non_conf_div_opp = self.NFC_NORTH
             conf_div_opp = self.AFC_NORTH"""
+
+
+    """ 
+    
+    Div - 6
+    in-conf Div - 4
+    out-conf Div - 4
+
+    3
+    
+    WEEK: Div
+    1 - 2
+    
+    """
         
         
         
