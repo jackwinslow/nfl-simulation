@@ -124,9 +124,50 @@ class League:
         NFC = league.conference.Conference(self.NFC_NORTH, self.NFC_SOUTH, self.NFC_EAST, self.NFC_WEST) 
         AFC = league.conference.Conference(self.AFC_NORTH, self.AFC_SOUTH, self.AFC_EAST, self.AFC_WEST) 
 
-    def set_schedule(self):
-        return
-        
+    """def set_schedule(self, Team):
+        week_nums = []
+        for x in range(18): week_nums.append(x+1)
+        division = Team.get_division()
+        division_opponents = division.get_teams()
+        division_opponents.remove(Team)
+        for x in division_opponents:
+            Team.add_game([x, "HOME"])
+            Team.add_game([x, "AWAY"])
+            x.add_game([Team, "AWAY"])
+            x.add_game([Team, "HOME"])
+        non_conf_div_opp = self.AFC_EAST
+        conf_div_opp = self.AFC_EAST
+
+        if division == self.AFC_EAST:
+            non_conf_div_opp = self.NFC_NORTH
+            conf_div_opp = self.AFC_NORTH"""
+
+
+    """ 
+    
+    Div - 6
+    in-conf Div - 4
+    out-conf Div - 4
+
+    3
+    
+    WEEK: Div
+    1 - 2
+    
+    """
+    def get_div(self, div):
+        if div == "AFC EAST": return self.AFC_EAST
+        elif div == "AFC WEST": return self.AFC_WEST 
+        elif div == "AFC NORTH": return self.AFC_NORTH 
+        elif div == "AFC SOUTH": return self.AFC_SOUTH 
+        elif div == "NFC EAST": return self.NFC_EAST
+        elif div == "NFC WEST": return self.NFC_WEST 
+        elif div == "NFC NORTH": return self.NFC_NORTH 
+        elif div == "NFC SOUTH": return self.NFC_SOUTH 
+        else: return None
+    
+    def get_divs(self):
+        return [self.AFC_EAST, self.AFC_NORTH, self.AFC_SOUTH, self.AFC_WEST, self.NFC_EAST, self.NFC_NORTH, self.NFC_SOUTH, self.NFC_WEST]
         
     # League Standings
     # - This is really only important for the NFL Draft
