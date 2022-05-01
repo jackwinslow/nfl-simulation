@@ -30,8 +30,11 @@ def main():
         print("HERE")
         trial_num = 0
         for wk in schedule:
-            for game in wk:
+            print('week')
+            for game in wk.get_games():
                 game.play_game()
+        
+        season += 1
 
 
 main()

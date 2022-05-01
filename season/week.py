@@ -40,24 +40,22 @@ class Week:
 
     def run_mats(self, year, num_for_type, mats):
         for mat in mats:
-            
-            print(mat)
             if num_for_type == 0:
                 for x in range(4):
-                    self.games.append(Game(mat[0][x], mat[1][x]))
+                    self.games.append(Game(mat[0].get_team(x), mat[1].get_team(x)))
             elif num_for_type == 1:
                 for x in range(4):
-                    self.games.append(Game(mat[0][x], mat[1][3-x]))
+                    self.games.append(Game(mat[0].get_team(x), mat[1].get_team(3-x)))
             elif num_for_type == 2:
-                self.games.append(Game(mat[1][0], mat[0][1]))
-                self.games.append(Game(mat[1][1], mat[0][3]))
-                self.games.append(Game(mat[1][2], mat[0][0]))
-                self.games.append(Game(mat[1][3], mat[0][2]))
+                self.games.append(Game(mat[1].get_team(0), mat[0].get_team(1)))
+                self.games.append(Game(mat[1].get_team(1), mat[0].get_team(3)))
+                self.games.append(Game(mat[1].get_team(2), mat[0].get_team(0)))
+                self.games.append(Game(mat[1].get_team(3), mat[0].get_team(2)))
             elif num_for_type == 3:
-                self.games.append(Game(mat[1][0], mat[0][2]))
-                self.games.append(Game(mat[1][1], mat[0][0]))
-                self.games.append(Game(mat[1][2], mat[0][3]))
-                self.games.append(Game(mat[1][3], mat[0][1]))
+                self.games.append(Game(mat[1].get_team(0), mat[0].get_team(2)))
+                self.games.append(Game(mat[1].get_team(1), mat[0].get_team(0)))
+                self.games.append(Game(mat[1].get_team(2), mat[0].get_team(3)))
+                self.games.append(Game(mat[1].get_team(3), mat[0].get_team(1)))
 
     def conf_week(self, year, num_for_type):
         divs = league.get_divs()
@@ -94,29 +92,29 @@ class Week:
         AFC_MATS = mats[:2]
         NFC_MATS = mats[2:]
         if num_for_type == 0:
-            for t in AFC_MATS[0][0]:
+            for t in AFC_MATS[0][0].get_teams():
                 opp = AFC_MATS[1][0].get_team(t.get_prev_div_rank())
                 self.games.append(Game(t, opp))
-            for t in AFC_MATS[0][1]:
+            for t in AFC_MATS[0][1].get_teams():
                 opp = AFC_MATS[1][1].get_team(t.get_prev_div_rank())
                 self.games.append(Game(t, opp))
-            for t in NFC_MATS[0][0]:
+            for t in NFC_MATS[0][0].get_teams():
                 opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank())
                 self.games.append(Game(t, opp))
-            for t in NFC_MATS[0][1]:
+            for t in NFC_MATS[0][1].get_teams():
                 opp = NFC_MATS[1][1].get_team(t.get_prev_div_rank())
                 self.games.append(Game(t, opp))
         elif num_for_type == 1:
-            for t in AFC_MATS[0][0]:
+            for t in AFC_MATS[0][0].get_teams():
                 opp = AFC_MATS[1][1].get_team(t.get_prev_div_rank())
                 self.games.append(Game(t, opp))
-            for t in AFC_MATS[0][1]:
+            for t in AFC_MATS[0][1].get_teams():
                 opp = AFC_MATS[1][0].get_team(t.get_prev_div_rank())
                 self.games.append(Game(t, opp))
-            for t in NFC_MATS[0][0]:
+            for t in NFC_MATS[0][0].get_teams():
                 opp = NFC_MATS[1][1].get_team(t.get_prev_div_rank())
                 self.games.append(Game(t, opp))
-            for t in NFC_MATS[0][1]:
+            for t in NFC_MATS[0][1].get_teams():
                 opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank())
                 self.games.append(Game(t, opp))
 

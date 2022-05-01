@@ -57,7 +57,7 @@ class Team:
         self.homefield_advantage += 1
 
     def set_morale_level(self):
-        self.moral_levele += 1
+        self.morale_level += 1
 
     def set_record(self):
         win_count = len([w for w in self.outcomes.get_skill_level() if w > 0])
@@ -68,7 +68,7 @@ class Team:
         self.div_wins += 1
 
     def set_skill_level(self):
-        change = sum([x for x in self.outcomes.get_skill_level()])
+        change = sum([x for x in self.outcomes])
         WL_factor = (len(self.outcomes)/21) * change 
         self.skill_level = self.i_skill_level + WL_factor  
 
