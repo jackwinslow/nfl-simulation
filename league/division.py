@@ -1,17 +1,20 @@
-from league import team
+from league.team import Team
 
 class Division:
 
-    team_0 = team.Team()
-    team_1 = team.Team()
-    team_2 = team.Team()
-    team_3 = team.Team()
+    """team_0 = Team()
+    team_1 = Team()
+    team_2 = Team()
+    team_3 = Team()"""
 
     def __init__(self, team_0, team_1, team_2, team_3):
         self.team_0 = team_0
         self.team_1 = team_1
         self.team_2 = team_2
         self.team_3 = team_3
+
+    """def __init__(self):
+        self.name = None"""
 
     def get_team(self, team_num):
         return [self.team_0, self.team_1, self.team_2, self.team_3][team_num]

@@ -39,10 +39,10 @@ class Team:
         self.name = name
         self.conference = conference
         self.division = division
-    
-    def __init__(self):
-        self.name = None
 
+    """def __init__(self):
+        self.name = None"""
+    
     def append_outcomes(self, outcome):
         self.outcomes.append(outcome)
 

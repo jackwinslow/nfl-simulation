@@ -3,14 +3,14 @@ from league import team
 
 class Game:
 
-    home = team.Team()
-    away = team.Team()
+    """home = team.Team()
+    away = team.Team()"""
     isDivG = False
     
     # default constructor
     def __init__(self, home, away):
         self.home = away
-        self.home = away
+        self.away = away
         isDivG = self.home.get_division() == self.away.get_division()
 
     # add functions for calculating winner
@@ -36,6 +36,8 @@ class Game:
 
         self.home.append_outcomes(away_WL)
         self.away.append_outcomes(home_WL)
+
+        print(f"{self.away} vs {self.home}")
         
 
         

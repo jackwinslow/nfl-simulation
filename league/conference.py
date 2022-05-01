@@ -1,13 +1,13 @@
-from league import division
+from league.division import Division
 
 class Conference:
 
-    North = division.Division()
-    South = division.Division()
-    East = division.Division()
-    West = division.Division()
+    """North = Division()
+    South = Division()
+    East = Division()
+    West = Division()"""
 
-    def __init__(self, North, South, East, West):
+    def __init__(self, East, North, South, West):
         self.North = North
         self.South = South
         self.East = East

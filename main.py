@@ -1,12 +1,6 @@
 import random as r 
-import league
-from season.regular_season import RegularSeason
 from season.week import Week
 from season.game import Game
-
-NFL = league.League()
-
-schedule = []
 
 """def main():
     rs = RegularSeason([Week([Game("Patriots","Jets"),Game("Bills","Giants"),Game("Dolphins","Rams")]),
@@ -16,11 +10,28 @@ schedule = []
     return rs.execute_regular_season()
 """
 
-def main():
-    for x in range(6): schedule.append(Week("DIV", x))
-    for x in range(4): schedule.append(Week("CONF-DIV", x))
-    for x in range(4): schedule.append(Week("NON-CONF-DIV", x))
-    for x in range(2): schedule.append(Week("RANK", x))
-    schedule.append(Week("RIVAL", x))
+def make_schedule(season):
+    schedule = []
+    for x in range(6): 
+        schedule.append(Week(season, "DIV", x))
+    for x in range(4): 
+        schedule.append(Week(season, "CONF-DIV", x))
+    for x in range(4): 
+        schedule.append(Week(season, "NON-CONF-DIV", x))
+    for x in range(2): 
+        schedule.append(Week(season, "RANK", x))
+    # schedule.append(Week(season, "RIVAL", x))
+    return schedule
 
-print(main())
+def main():
+    season = 0
+    while season < 3:
+        schedule = make_schedule(season)
+        print("HERE")
+        trial_num = 0
+        for wk in schedule:
+            for game in wk:
+                game.play_game()
+
+
+main()
