@@ -17,10 +17,14 @@ class Week:
 
     # default constructor, haven't made significant edits
     def __init__(self, week_type, num_for_type):
-        self.game_pairs = []
+        if week_type == "DIV": self.div_week(num_for_type)
+        elif week_type == "CONF-DIV": self.conf_week(num_for_type)
+        elif week_type == "NON-CONF-DIV": self.nonconf_week(num_for_type)
+        elif week_type == "RANK": self.rank_week(num_for_type)
+        else: self.rival_week(num_for_type)
 
-    # DIV WEEK
-    def __init__(self, week_type, num_for_type):
+        
+    def div_week(self, num_for_type):
         for div in league.get_divs():
             game_pair_1 = [div[0], div[1]]
             game_pair_2 = [div[2], div[3]]
