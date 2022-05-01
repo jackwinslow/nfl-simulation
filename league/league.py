@@ -155,7 +155,19 @@ class League:
     1 - 2
     
     """
-        
+    def get_div(self, div):
+        if div == "AFC EAST": return self.AFC_EAST
+        elif div == "AFC WEST": return self.AFC_WEST 
+        elif div == "AFC NORTH": return self.AFC_NORTH 
+        elif div == "AFC SOUTH": return self.AFC_SOUTH 
+        elif div == "NFC EAST": return self.NFC_EAST
+        elif div == "NFC WEST": return self.NFC_WEST 
+        elif div == "NFC NORTH": return self.NFC_NORTH 
+        elif div == "NFC SOUTH": return self.NFC_SOUTH 
+        else: return None
+    
+    def get_divs(self):
+        return [self.AFC_EAST, self.AFC_NORTH, self.AFC_SOUTH, self.AFC_WEST, self.NFC_EAST, self.NFC_NORTH, self.NFC_SOUTH, self.NFC_WEST]
         
         
 
