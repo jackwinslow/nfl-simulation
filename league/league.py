@@ -137,9 +137,16 @@ class League:
         elif div == "NFC NORTH": return self.NFC_NORTH 
         elif div == "NFC SOUTH": return self.NFC_SOUTH 
         else: return None
+<<<<<<< HEAD
 
 
         
 
+=======
+    
+    def get_divs(self):
+        return [self.AFC_EAST, self.AFC_NORTH, self.AFC_SOUTH, self.AFC_WEST, self.NFC_EAST, self.NFC_NORTH, self.NFC_SOUTH, self.NFC_WEST]
+        
+>>>>>>> 47d9e24ae406130bd6e1b0698e7d3164bebd90bb
     # League Standings
     # - This is really only important for the NFL Draft
