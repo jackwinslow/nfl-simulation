@@ -74,19 +74,17 @@ class Week:
             mats = [[AFC[0], AFC[2]], [AFC[1], AFC[3]], [NFC[0], NFC[2]], [NFC[1], NFC[3]]]
         self.run_mats(year, num_for_type, mats)
 
-    # have not adjusted yet
     def nonconf_week(self, year, num_for_type):
         divs = league.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
-        mats = [[AFC[0], AFC[1]], [AFC[2], AFC[3]], [NFC[0], NFC[1]], [NFC[2], NFC[3]]]
+        mats = [[AFC[0], NFC[1]], [AFC[2], NFC[0]], [AFC[3], NFC[3]], [AFC[1], NFC[2]]]
         if year == 1:
-            mats = [[AFC[0], AFC[3]], [AFC[1], AFC[2]], [NFC[0], NFC[3]], [NFC[1], NFC[2]]]
+            mats = [[AFC[0], NFC[2]], [AFC[2], NFC[1]], [AFC[3], NFC[0]], [AFC[1], NFC[3]]]
         elif year == 2:
-            mats = [[AFC[0], AFC[2]], [AFC[1], AFC[3]], [NFC[0], NFC[2]], [NFC[1], NFC[3]]]
+            mats = [[AFC[0], NFC[3]], [AFC[2], NFC[2]], [AFC[3], NFC[1]], [AFC[1], NFC[0]]]
         self.run_mats(year, num_for_type, mats)
 
-                
 
     def execute_week(self):
         result = []
