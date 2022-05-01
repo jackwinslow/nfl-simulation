@@ -12,8 +12,8 @@ class Week:
     """
     week_type = ""
     num_for_type = ""
-    
     game_pairs = []
+    divs_played = []
 
     # default constructor, haven't made significant edits
     def __init__(self, week_type, num_for_type):
@@ -84,6 +84,48 @@ class Week:
         elif year == 2:
             mats = [[AFC[0], NFC[3]], [AFC[2], NFC[2]], [AFC[3], NFC[1]], [AFC[1], NFC[0]]]
         self.run_mats(year, num_for_type, mats)
+
+
+    def rank_week(self, year, num_for_type):
+        divs = league.get_divs()
+        AFC = divs[:4]
+        NFC = divs[4:]
+        mats = [[AFC[0], AFC[1]], [AFC[2], AFC[3]], [NFC[0], NFC[1]], [NFC[2], NFC[3]]]
+        if year == 1:
+            mats = [[AFC[0], AFC[3]], [AFC[1], AFC[2]], [NFC[0], NFC[3]], [NFC[1], NFC[2]]]
+        elif year == 2:
+            mats = [[AFC[0], AFC[2]], [AFC[1], AFC[3]], [NFC[0], NFC[2]], [NFC[1], NFC[3]]]
+        AFC_MATS = mats[:2]
+        NFC_MATS = mats[2:]
+        if num_for_type == 0:
+            for t in AFC_MATS[0][0]:
+                opp = AFC_MATS[1][0].get_team(t.get_prev_div_rank())
+                self.game_pairs.append(t, opp)
+            for t in AFC_MATS[0][1]:
+                opp = AFC_MATS[1][1].get_team(t.get_prev_div_rank())
+                self.game_pairs.append(t, opp)
+            for t in NFC_MATS[0][0]:
+                opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank())
+                self.game_pairs.append(t, opp)
+            for t in NFC_MATS[0][1]:
+                opp = NFC_MATS[1][1].get_team(t.get_prev_div_rank())
+                self.game_pairs.append(t, opp)
+        elif num_for_type == 1:
+            for t in AFC_MATS[0][0]:
+                opp = AFC_MATS[1][1].get_team(t.get_prev_div_rank())
+                self.game_pairs.append(t, opp)
+            for t in AFC_MATS[0][1]:
+                opp = AFC_MATS[1][0].get_team(t.get_prev_div_rank())
+                self.game_pairs.append(t, opp)
+            for t in NFC_MATS[0][0]:
+                opp = NFC_MATS[1][1].get_team(t.get_prev_div_rank())
+                self.game_pairs.append(t, opp)
+            for t in NFC_MATS[0][1]:
+                opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank())
+                self.game_pairs.append(t, opp)
+        
+
+            
 
 
     def execute_week(self):

@@ -108,6 +108,9 @@ class Team:
     
     def get_prev_szn_rank(self):
         return self.prev_szn_rank
+    
+    def get_prev_div_rank(self):
+        return self.division_rank
 
     def get_skill_level(self):
         return self.skill_level
