@@ -1,8 +1,10 @@
 import random as r 
+from league import league
 from season.week import Week
 from season.game import Game
 from season.playoffs import Playoffs
 from league.league import League
+from imp import reload
 
 """def main():
     rs = RegularSeason([Week([Game("Patriots","Jets"),Game("Bills","Giants"),Game("Dolphins","Rams")]),
@@ -25,7 +27,7 @@ def make_schedule(season):
     schedule.append(Week(season, "RANDOM", x))
     return schedule
 
-trials = 100
+trials = 1000
 
 def main():
     for trial in range(trials):
@@ -91,7 +93,7 @@ def main():
             print(SB_champ.get_name())
 
             League.reset_data()
-        
+        reload(league)
         print()
 
 
