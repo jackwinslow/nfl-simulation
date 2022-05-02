@@ -1,4 +1,5 @@
 import random as r
+import numpy as np
 
 class Team:
 
@@ -149,22 +150,12 @@ class Team:
         return self.health_level
 
     def get_wins(self):
-        count = 0
-        for num in self.outcomes:
-            if num > 0:
-                count += 1
-        return count
+        return len([x for x in self.outcomes if x > 0])
 
     def get_losses(self):
-        count = 0
-        for num in self.outcomes:
-            if num < 0:
-                count += 1
-        return count
+        return len([x for x in self.outcomes if x < 0])
 
     def get_sos(self):
-        sum = 0
-        for num in self.outcomes:
-            sum += abs(num)
-
-        return sum
+        games = np.array(self.outcomes)
+        np.absolute(games)
+        return np.sum(games)
