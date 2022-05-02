@@ -3,6 +3,7 @@ from season.week import Week
 from season.game import Game
 from season.playoffs import Playoffs
 from league.league import League
+import time as t
 
 """def main():
     rs = RegularSeason([Week([Game("Patriots","Jets"),Game("Bills","Giants"),Game("Dolphins","Rams")]),
@@ -27,7 +28,7 @@ def make_schedule(season):
 
 def main():
     season = 0
-    while season < 50:
+    while season < 2000:
         schedule = make_schedule(season)
         wk_count = 0
         for wk in schedule:
@@ -93,4 +94,8 @@ def main():
         season += 1
 
 
+start = t.time()
 main()
+end = t.time()
+
+print(f"\n\n\n{end-start}\n\n\n")
