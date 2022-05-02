@@ -64,7 +64,12 @@ def main():
         league_rankings = League.calc_and_set_rank()
         for x in range(len(league_rankings)):
             num = str(x + 1) + '.'
-            print(num,'\t',league_rankings[x].get_name())
+            print(num,'\t',league_rankings[x].get_name(), league_rankings[x].get_())
+
+        afc_rankings, nfc_rankings = League.AFC.calc_and_set_rank()
+
+        afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = League.AFC.East.calc_and_set_rank()
+
         League.reset_data()
         season += 1
 
