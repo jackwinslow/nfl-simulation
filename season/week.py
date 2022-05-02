@@ -1,5 +1,5 @@
 import random as r
-from league import league
+from league.league import League
 from league.team import Team
 from league.division import Division
 from season.game import Game
@@ -7,7 +7,8 @@ from season.game import Game
 class Week:
 
     # default constructor, haven't made significant edits
-    def __init__(self, year, week_type, num_for_type):
+    def __init__(self, nfl, year, week_type, num_for_type):
+        self.nfl = nfl
         self.games = []
         self.week_type = week_type
         if week_type == "DIV": self.div_week(num_for_type)
@@ -20,7 +21,7 @@ class Week:
         return self.week_type
         
     def div_week(self, num_for_type):
-        for divis in league.get_divs():
+        for divis in self.nfl.get_divs():
             div = divis.get_teams()
             if num_for_type == 0:
                 self.games.append(Game(div[0], div[1]))
@@ -63,7 +64,7 @@ class Week:
                 self.games.append(Game(mat[1].get_team(3), mat[0].get_team(1)))
 
     def conf_week(self, year, num_for_type):
-        divs = league.get_divs()
+        divs = self.nfl.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
         mats = [[AFC[0], AFC[1]], [AFC[2], AFC[3]], [NFC[0], NFC[1]], [NFC[2], NFC[3]]]
@@ -76,7 +77,7 @@ class Week:
         # print('conf week', len(self.games))
 
     def nonconf_week(self, year, num_for_type):
-        divs = league.get_divs()
+        divs = self.nfl.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
         mats = [[AFC[0], NFC[1]], [AFC[2], NFC[0]], [AFC[3], NFC[3]], [AFC[1], NFC[2]]]
@@ -90,7 +91,7 @@ class Week:
 
 
     def rank_week(self, year, num_for_type):
-        divs = league.get_divs()
+        divs = self.nfl.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
         mats = [[AFC[0], AFC[1]], [AFC[2], AFC[3]], [NFC[0], NFC[1]], [NFC[2], NFC[3]]]
@@ -128,7 +129,7 @@ class Week:
                 self.games.append(Game(t, opp))
 
     def random_week(self, year):
-        divs = league.get_divs()
+        divs = self.nfl.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
         mats = [[AFC[0], NFC[3]], [AFC[1], NFC[0]], [AFC[2], NFC[1]], [AFC[3], NFC[2]]]

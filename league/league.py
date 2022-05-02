@@ -2,337 +2,200 @@ from league.team import Team
 from league.division import Division
 from league.conference import Conference
 
-# American Football Conference
-
-Bills = Team("Bills", "AFC", "East")
-Bills.set_prev_szn_rank(8)
-Bills.set_prev_division_rank(1)
-Bills.set_i_skill_level()
-
-Patriots = Team("Patriots", "AFC", "East")
-Patriots.set_prev_szn_rank(12)
-Patriots.set_prev_division_rank(2)
-Patriots.set_i_skill_level()
-
-Dolphins = Team("Dolphins", "AFC", "East")
-Dolphins.set_prev_szn_rank(18)
-Dolphins.set_prev_division_rank(3)
-Dolphins.set_i_skill_level()
-
-Jets = Team("Jets", "AFC", "East")
-Jets.set_prev_szn_rank(29)
-Jets.set_prev_division_rank(4)
-Jets.set_i_skill_level()
-
-AFC_EAST = Division(Bills, Patriots, Dolphins, Jets)
-
-Bengals = Team("Bengals", "AFC", "North")
-Bengals.set_prev_szn_rank(2)
-Bengals.set_prev_division_rank(1)
-Bengals.set_i_skill_level()
-
-Steelers = Team("Steelers", "AFC", "North")
-Steelers.set_prev_szn_rank(13)
-Steelers.set_prev_division_rank(2)
-Steelers.set_i_skill_level()
-
-Browns = Team("Browns", "AFC", "North")
-Browns.set_prev_szn_rank(20)
-Browns.set_prev_division_rank(3)
-Browns.set_i_skill_level()
-
-Ravens = Team("Ravens", "AFC", "North")
-Ravens.set_prev_szn_rank(19)
-Ravens.set_prev_division_rank(4)
-Ravens.set_i_skill_level()
-
-AFC_NORTH = Division(Bengals, Steelers, Browns, Ravens)
-
-Titans = Team("Titans", "AFC", "South")
-Titans.set_prev_szn_rank(7)
-Titans.set_prev_division_rank(1)
-Titans.set_i_skill_level()
-
-Colts = Team("Colts", "AFC", "South")
-Colts.set_prev_szn_rank(17)
-Colts.set_prev_division_rank(2)
-Colts.set_i_skill_level()
-
-Texans = Team("Texans", "AFC", "South")
-Texans.set_prev_szn_rank(30)
-Texans.set_prev_division_rank(3)
-Texans.set_i_skill_level()
-
-Jaguars = Team("Jaguars", "AFC", "South")
-Jaguars.set_prev_szn_rank(32)
-Jaguars.set_prev_division_rank(4)
-Jaguars.set_i_skill_level()
-
-AFC_SOUTH = Division(Titans, Colts, Texans, Jaguars)
-
-Chiefs = Team("Chiefs", "AFC", "West")
-Chiefs.set_prev_szn_rank(3)
-Chiefs.set_prev_division_rank(1)
-Chiefs.set_i_skill_level()
-
-Raiders = Team("Raiders", "AFC", "West")
-Raiders.set_prev_szn_rank(11)
-Raiders.set_prev_division_rank(2)
-Raiders.set_i_skill_level()
-
-Chargers = Team("Chargers", "AFC", "West")
-Chargers.set_prev_szn_rank(16)
-Chargers.set_prev_division_rank(3)
-Chargers.set_i_skill_level()
-
-Broncos = Team("Broncos", "AFC", "West")
-Broncos.set_prev_szn_rank(24)
-Broncos.set_prev_division_rank(4)
-Broncos.set_i_skill_level()
-
-AFC_WEST = Division(Chiefs, Raiders, Chargers, Broncos)
-
-# National Football Conference 
-
-Cowboys = Team("Cowboys", "NFC", "East")
-Cowboys.set_prev_szn_rank(9)
-Cowboys.set_prev_division_rank(1)
-Cowboys.set_i_skill_level()
-
-Eagles = Team("Eagles", "NFC", "East")
-Eagles.set_prev_szn_rank(14)
-Eagles.set_prev_division_rank(2)
-Eagles.set_i_skill_level()
-
-Commanders = Team("Commanders", "NFC", "East")
-Commanders.set_prev_szn_rank(22)
-Commanders.set_prev_division_rank(3)
-Commanders.set_i_skill_level()
-
-Giants = Team("Giants", "NFC", "East")
-Giants.set_prev_szn_rank(28)
-Giants.set_prev_division_rank(4)
-Giants.set_i_skill_level()
-
-NFC_EAST = Division(Cowboys, Eagles, Commanders, Giants)
-
-Packers = Team("Packers", "NFC", "North")
-Packers.set_prev_szn_rank(5)
-Packers.set_prev_division_rank(1)
-Packers.set_i_skill_level()
-
-Vikings = Team("Vikings", "NFC", "North")
-Vikings.set_prev_szn_rank(21)
-Vikings.set_prev_division_rank(2)
-Vikings.set_i_skill_level()
-
-Bears = Team("Bears", "NFC", "North")
-Bears.set_prev_szn_rank(26)
-Bears.set_prev_division_rank(3)
-Bears.set_i_skill_level()
-
-Lions = Team("Lions", "NFC", "North")
-Lions.set_prev_szn_rank(31)
-Lions.set_prev_division_rank(4)
-Lions.set_i_skill_level()
-
-NFC_NORTH = Division(Packers, Vikings, Bears, Lions)
-
-Buccaneers = Team("Buccaneers", "NFC", "South")
-Buccaneers.set_prev_szn_rank(6)
-Buccaneers.set_prev_division_rank(1)
-Buccaneers.set_i_skill_level()
-
-Saints = Team("Saints", "NFC", "South")
-Saints.set_prev_szn_rank(15)
-Saints.set_prev_division_rank(2)
-Saints.set_i_skill_level()
-
-Falcons = Team("Falcons", "NFC", "South")
-Falcons.set_prev_szn_rank(25)
-Falcons.set_prev_division_rank(3)
-Falcons.set_i_skill_level()
-
-Panthers = Team("Panthers", "NFC", "South")
-Panthers.set_prev_szn_rank(27)
-Panthers.set_prev_division_rank(4)
-Panthers.set_i_skill_level()
-
-NFC_SOUTH = Division(Buccaneers, Saints, Falcons, Panthers)
-
-Rams = Team("Rams", "NFC", "West")
-Rams.set_prev_szn_rank(1)
-Rams.set_prev_division_rank(1)
-Rams.set_i_skill_level()
-
-Cardinals = Team("Cardinals", "NFC", "West")
-Cardinals.set_prev_szn_rank(10)
-Cardinals.set_prev_division_rank(2)
-Cardinals.set_i_skill_level()
-
-Fourty_Niners = Team("Fourty_Niners", "NFC", "West")
-Fourty_Niners.set_prev_szn_rank(4)
-Fourty_Niners.set_prev_division_rank(3)
-Fourty_Niners.set_i_skill_level()
-
-Seahawks = Team("Seahawks", "NFC", "West")
-Seahawks.set_prev_szn_rank(23)
-Seahawks.set_prev_division_rank(4)
-Seahawks.set_i_skill_level()
-
-NFC_WEST = Division(Rams, Cardinals, Fourty_Niners, Seahawks)
-
-def get_divs():
-    return [AFC_EAST, AFC_NORTH, AFC_SOUTH, AFC_WEST, NFC_EAST, NFC_NORTH, NFC_SOUTH, NFC_WEST]
-
 class League:
+
+    # American Football Conference
+
+    Bills = Team("Bills", "AFC", "East")
+    Bills.set_prev_szn_rank(8)
+    Bills.set_prev_division_rank(1)
+
+    Patriots = Team("Patriots", "AFC", "East")
+    Patriots.set_prev_szn_rank(12)
+    Patriots.set_prev_division_rank(2)
+
+    Dolphins = Team("Dolphins", "AFC", "East")
+    Dolphins.set_prev_szn_rank(18)
+    Dolphins.set_prev_division_rank(3)
+
+    Jets = Team("Jets", "AFC", "East")
+    Jets.set_prev_szn_rank(29)
+    Jets.set_prev_division_rank(4)
+
+    AFC_EAST = Division(Bills, Patriots, Dolphins, Jets)
+
+    Bengals = Team("Bengals", "AFC", "North")
+    Bengals.set_prev_szn_rank(2)
+    Bengals.set_prev_division_rank(1)
+
+    Steelers = Team("Steelers", "AFC", "North")
+    Steelers.set_prev_szn_rank(13)
+    Steelers.set_prev_division_rank(2)
+
+    Browns = Team("Browns", "AFC", "North")
+    Browns.set_prev_szn_rank(20)
+    Browns.set_prev_division_rank(3)
+
+    Ravens = Team("Ravens", "AFC", "North")
+    Ravens.set_prev_szn_rank(19)
+    Ravens.set_prev_division_rank(4)
+
+    AFC_NORTH = Division(Bengals, Steelers, Browns, Ravens)
+
+    Titans = Team("Titans", "AFC", "South")
+    Titans.set_prev_szn_rank(7)
+    Titans.set_prev_division_rank(1)
+
+    Colts = Team("Colts", "AFC", "South")
+    Colts.set_prev_szn_rank(17)
+    Colts.set_prev_division_rank(2)
+
+    Texans = Team("Texans", "AFC", "South")
+    Texans.set_prev_szn_rank(30)
+    Texans.set_prev_division_rank(3)
+
+    Jaguars = Team("Jaguars", "AFC", "South")
+    Jaguars.set_prev_szn_rank(32)
+    Jaguars.set_prev_division_rank(4)
+
+    AFC_SOUTH = Division(Titans, Colts, Texans, Jaguars)
+
+    Chiefs = Team("Chiefs", "AFC", "West")
+    Chiefs.set_prev_szn_rank(3)
+    Chiefs.set_prev_division_rank(1)
+
+    Raiders = Team("Raiders", "AFC", "West")
+    Raiders.set_prev_szn_rank(11)
+    Raiders.set_prev_division_rank(2)
+
+    Chargers = Team("Chargers", "AFC", "West")
+    Chargers.set_prev_szn_rank(16)
+    Chargers.set_prev_division_rank(3)
+
+    Broncos = Team("Broncos", "AFC", "West")
+    Broncos.set_prev_szn_rank(24)
+    Broncos.set_prev_division_rank(4)
+
+    AFC_WEST = Division(Chiefs, Raiders, Chargers, Broncos)
+
+    # National Football Conference 
+
+    Cowboys = Team("Cowboys", "NFC", "East")
+    Cowboys.set_prev_szn_rank(9)
+    Cowboys.set_prev_division_rank(1)
+
+    Eagles = Team("Eagles", "NFC", "East")
+    Eagles.set_prev_szn_rank(14)
+    Eagles.set_prev_division_rank(2)
+
+    Commanders = Team("Commanders", "NFC", "East")
+    Commanders.set_prev_szn_rank(22)
+    Commanders.set_prev_division_rank(3)
+
+    Giants = Team("Giants", "NFC", "East")
+    Giants.set_prev_szn_rank(28)
+    Giants.set_prev_division_rank(4)
+
+    NFC_EAST = Division(Cowboys, Eagles, Commanders, Giants)
+
+    Packers = Team("Packers", "NFC", "North")
+    Packers.set_prev_szn_rank(5)
+    Packers.set_prev_division_rank(1)
+
+    Vikings = Team("Vikings", "NFC", "North")
+    Vikings.set_prev_szn_rank(21)
+    Vikings.set_prev_division_rank(2)
+
+    Bears = Team("Bears", "NFC", "North")
+    Bears.set_prev_szn_rank(26)
+    Bears.set_prev_division_rank(3)
+
+    Lions = Team("Lions", "NFC", "North")
+    Lions.set_prev_szn_rank(31)
+    Lions.set_prev_division_rank(4)
+
+    NFC_NORTH = Division(Packers, Vikings, Bears, Lions)
+
+    Buccaneers = Team("Buccaneers", "NFC", "South")
+    Buccaneers.set_prev_szn_rank(6)
+    Buccaneers.set_prev_division_rank(1)
+
+    Saints = Team("Saints", "NFC", "South")
+    Saints.set_prev_szn_rank(15)
+    Saints.set_prev_division_rank(2)
+
+    Falcons = Team("Falcons", "NFC", "South")
+    Falcons.set_prev_szn_rank(25)
+    Falcons.set_prev_division_rank(3)
+
+    Panthers = Team("Panthers", "NFC", "South")
+    Panthers.set_prev_szn_rank(27)
+    Panthers.set_prev_division_rank(4)
+
+    NFC_SOUTH = Division(Buccaneers, Saints, Falcons, Panthers)
+
+    Rams = Team("Rams", "NFC", "West")
+    Rams.set_prev_szn_rank(1)
+    Rams.set_prev_division_rank(1)
+
+    Cardinals = Team("Cardinals", "NFC", "West")
+    Cardinals.set_prev_szn_rank(10)
+    Cardinals.set_prev_division_rank(2)
+
+    Fourty_Niners = Team("Fourty_Niners", "NFC", "West")
+    Fourty_Niners.set_prev_szn_rank(4)
+    Fourty_Niners.set_prev_division_rank(3)
+
+    Seahawks = Team("Seahawks", "NFC", "West")
+    Seahawks.set_prev_szn_rank(23)
+    Seahawks.set_prev_division_rank(4)
+
+    NFC_WEST = Division(Rams, Cardinals, Fourty_Niners, Seahawks)
 
     AFC = Conference(AFC_EAST, AFC_NORTH, AFC_SOUTH, AFC_WEST)
     NFC = Conference(NFC_EAST, NFC_NORTH, NFC_SOUTH, NFC_WEST)  
 
     def __init__(self):
-        self = self
+        self.AFC = Conference(self.AFC_EAST, self.AFC_NORTH, self.AFC_SOUTH, self.AFC_WEST)
+        self.NFC = Conference(self.NFC_EAST, self.NFC_NORTH, self.NFC_SOUTH, self.NFC_WEST)  
+
+    def get_divs(self):
+        return [self.AFC_EAST, self.AFC_NORTH, self.AFC_SOUTH, self.AFC_WEST, self.NFC_EAST, self.NFC_NORTH, self.NFC_SOUTH, self.NFC_WEST]
+    
+    def get_teams(self):
+        return [self.Patriots, self.Bills, self.Jets, self.Dolphins, self.Cardinals, self.Falcons, self.Ravens, self.Panthers, self.Bears, self.Bengals, self.Browns, self.Broncos, self.Cowboys, self.Lions, self.Packers, self.Texans, self.Colts, self.Jaguars, self.Chiefs, self.Raiders, self.Chargers, self.Rams, self.Vikings, self.Saints, self.Giants, self.Eagles, self.Steelers, self.Fourty_Niners, self.Seahawks, self.Buccaneers, self.Titans, self.Commanders]
+        
+    def super_reset(self):
+        for team in self.get_teams():
+            team.reset_SB()
 
     def get_div(self, div):
-        if div == "AFC EAST": return AFC_EAST
-        elif div == "AFC WEST": return AFC_WEST 
-        elif div == "AFC NORTH": return AFC_NORTH 
-        elif div == "AFC SOUTH": return AFC_SOUTH 
-        elif div == "NFC EAST": return NFC_EAST
-        elif div == "NFC WEST": return NFC_WEST 
-        elif div == "NFC NORTH": return NFC_NORTH 
-        elif div == "NFC SOUTH": return NFC_SOUTH 
+        if div == "AFC EAST": return self.AFC_EAST
+        elif div == "AFC WEST": return self.AFC_WEST 
+        elif div == "AFC NORTH": return self.AFC_NORTH 
+        elif div == "AFC SOUTH": return self.AFC_SOUTH 
+        elif div == "NFC EAST": return self.NFC_EAST
+        elif div == "NFC WEST": return self.NFC_WEST 
+        elif div == "NFC NORTH": return self.NFC_NORTH 
+        elif div == "NFC SOUTH": return self.NFC_SOUTH 
         else: return None
-
-    def reset_data():
+        
+    def reset_data(self):
 
         # AFC
-        for team in League.AFC.East.get_teams():
-            team.set_prev_division_rank(team.division_rank)
-            team.set_prev_szn_rank(team.league_rank)
-            team.set_division_rank(0)
-            team.set_conference_rank(0)
-            team.set_league_rank(0)
-            team.set_div_wins_zero()
-            team.set_outcomes([])
-            team.set_sos(0.0)
-            team.set_i_skill_level()
-            # team.set_win_level_zero()
+        for team in self.get_teams():
+            prev_div_rank = team.division_rank
+            prev_League_rank = team.league_rank
+            name = team.get_name()
+            conference = team.get_conference()
+            division = team.get_division()
+            team = Team(name, conference, division)
+        #print('Reset Team Season Data')
 
-        for team in League.AFC.North.get_teams():
-            team.set_prev_division_rank(team.division_rank)
-            team.set_prev_szn_rank(team.league_rank)
-            team.set_division_rank(0)
-            team.set_conference_rank(0)
-            team.set_league_rank(0)
-            team.set_div_wins_zero()
-            team.set_outcomes([])
-            team.set_sos(0.0)
-            team.set_i_skill_level()
-            # team.set_win_level_zero()
-
-        for team in League.AFC.South.get_teams():
-            team.set_prev_division_rank(team.division_rank)
-            team.set_prev_szn_rank(team.league_rank)
-            team.set_division_rank(0)
-            team.set_conference_rank(0)
-            team.set_league_rank(0)
-            team.set_div_wins_zero()
-            team.set_outcomes([])
-            team.set_sos(0.0)
-            team.set_i_skill_level()
-            # team.set_win_level_zero()
-
-        for team in League.AFC.West.get_teams():
-            team.set_prev_division_rank(team.division_rank)
-            team.set_prev_szn_rank(team.league_rank)
-            team.set_division_rank(0)
-            team.set_conference_rank(0)
-            team.set_league_rank(0)
-            team.set_div_wins_zero()
-            team.set_outcomes([])
-            team.set_sos(0.0)
-            team.set_i_skill_level()
-            # team.set_win_level_zero()
-
-        # NFC
-        for team in League.NFC.East.get_teams():
-            team.set_prev_division_rank(team.division_rank)
-            team.set_prev_szn_rank(team.league_rank)
-            team.set_division_rank(0)
-            team.set_conference_rank(0)
-            team.set_league_rank(0)
-            team.set_div_wins_zero()
-            team.set_outcomes([])
-            team.set_sos(0.0)
-            team.set_i_skill_level()
-            # team.set_win_level_zero()
-
-        for team in League.NFC.North.get_teams():
-            team.set_prev_division_rank(team.division_rank)
-            team.set_prev_szn_rank(team.league_rank)
-            team.set_division_rank(0)
-            team.set_conference_rank(0)
-            team.set_league_rank(0)
-            team.set_div_wins_zero()
-            team.set_outcomes([])
-            team.set_sos(0.0)
-            team.set_i_skill_level()
-            # team.set_win_level_zero()
-
-        for team in League.NFC.South.get_teams():
-            team.set_prev_division_rank(team.division_rank)
-            team.set_prev_szn_rank(team.league_rank)
-            team.set_division_rank(0)
-            team.set_conference_rank(0)
-            team.set_league_rank(0)
-            team.set_div_wins_zero()
-            team.set_outcomes([])
-            team.set_sos(0.0)
-            team.set_i_skill_level()
-            # team.set_win_level_zero()
-
-        for team in League.NFC.West.get_teams():
-            team.set_prev_division_rank(team.division_rank)
-            team.set_prev_szn_rank(team.league_rank)
-            team.set_division_rank(0)
-            team.set_conference_rank(0)
-            team.set_league_rank(0)
-            team.set_div_wins_zero()
-            team.set_outcomes([])
-            team.set_sos(0.0)
-            team.set_i_skill_level()
-            # team.set_win_level_zero()
-
-        print('Reset Team Season Data')
-
-    def set_league_rank():
+    def set_league_rank(self):
         league = []
-
-        # AFC
-        for team in League.AFC.East.get_teams():
-            league.append(team)
-
-        for team in League.AFC.North.get_teams():
-            league.append(team)
-
-        for team in League.AFC.South.get_teams():
-            league.append(team)
-
-        for team in League.AFC.West.get_teams():
-            league.append(team)
-
-        # NFC
-        for team in League.NFC.East.get_teams():
-            league.append(team)
-
-        for team in League.NFC.North.get_teams():
-            league.append(team)
-
-        for team in League.NFC.South.get_teams():
-            league.append(team)
-
-        for team in League.NFC.West.get_teams():
+        
+        for team in self.get_teams():
             league.append(team)
 
         league.sort(key=lambda x: (x.get_wins(), x.get_sos()), reverse=True)
@@ -342,34 +205,34 @@ class League:
 
         return league
 
-    def set_conference_rank():
+    def set_conference_rank(self):
         afc = []
         nfc = []
 
         # AFC
-        for team in League.AFC.East.get_teams():
+        for team in self.AFC.East.get_teams():
             afc.append(team)
 
-        for team in League.AFC.North.get_teams():
+        for team in self.AFC.North.get_teams():
             afc.append(team)
 
-        for team in League.AFC.South.get_teams():
+        for team in self.AFC.South.get_teams():
             afc.append(team)
 
-        for team in League.AFC.West.get_teams():
+        for team in self.AFC.West.get_teams():
             afc.append(team)
 
         # NFC
-        for team in League.NFC.East.get_teams():
+        for team in self.NFC.East.get_teams():
             nfc.append(team)
 
-        for team in League.NFC.North.get_teams():
+        for team in self.NFC.North.get_teams():
             nfc.append(team)
 
-        for team in League.NFC.South.get_teams():
+        for team in self.NFC.South.get_teams():
             nfc.append(team)
 
-        for team in League.NFC.West.get_teams():
+        for team in self.NFC.West.get_teams():
             nfc.append(team)
 
         afc.sort(key=lambda x: (x.get_wins(), x.get_sos()), reverse=True)
@@ -383,7 +246,7 @@ class League:
 
         return afc, nfc
         
-    def set_div_rank():
+    def set_div_rank(self):
         afc_east = []
         afc_north = []
         afc_south = []
@@ -394,29 +257,29 @@ class League:
         nfc_west = []
 
         # AFC
-        for team in League.AFC.East.get_teams():
+        for team in self.AFC.East.get_teams():
             afc_east.append(team)
 
-        for team in League.AFC.North.get_teams():
+        for team in self.AFC.North.get_teams():
             afc_north.append(team)
 
-        for team in League.AFC.South.get_teams():
+        for team in self.AFC.South.get_teams():
             afc_south.append(team)
 
-        for team in League.AFC.West.get_teams():
+        for team in self.AFC.West.get_teams():
             afc_west.append(team)
 
         # NFC
-        for team in League.NFC.East.get_teams():
+        for team in self.NFC.East.get_teams():
             nfc_east.append(team)
 
-        for team in League.NFC.North.get_teams():
+        for team in self.NFC.North.get_teams():
             nfc_north.append(team)
 
-        for team in League.NFC.South.get_teams():
+        for team in self.NFC.South.get_teams():
             nfc_south.append(team)
 
-        for team in League.NFC.West.get_teams():
+        for team in self.NFC.West.get_teams():
             nfc_west.append(team)
 
         afc_east.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
@@ -455,12 +318,12 @@ class League:
         return afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west
 
 
-    def calc_playoff_seeds():
+    def calc_playoff_seeds(self):
         afc = []
         nfc = []
 
-        afc_rankings, nfc_rankings = League.set_conference_rank()
-        afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = League.set_div_rank()
+        afc_rankings, nfc_rankings = self.set_conference_rank()
+        afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = self.set_div_rank()
 
         # AFC
         afc.append(afc_east[0]); afc_rankings.remove(afc_east[0])
