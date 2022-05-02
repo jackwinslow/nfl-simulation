@@ -85,7 +85,7 @@ def main():
 
         AFC_Conf_champ = Playoffs(afc_playoffs).get_conf_winner()
         NFC_Conf_champ = Playoffs(nfc_playoffs).get_conf_winner()
-        SB_champ = Game(AFC_Conf_champ, NFC_Conf_champ).play_playoff_game()
+        SB_champ = Game(AFC_Conf_champ, NFC_Conf_champ).play_playoff_game(True)
         print(f"\n\nSB WINNER: {SB_champ.get_name()}\n\n")
         
 

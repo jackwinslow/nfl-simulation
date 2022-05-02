@@ -26,7 +26,7 @@ class Playoffs:
         self.teams.remove(loser_2)
     
     def conference_round(self):
-        loser = Game(self.teams[0], self.teams[3]).play_playoff_game(False)
+        loser = Game(self.teams[0], self.teams[1]).play_playoff_game(False)
         self.teams.remove(loser)
 
     # returns the winner of the conference    
