@@ -63,39 +63,39 @@ class Team:
         arr = self.get_injuries()
         health_level = self.get_health_level()
         for j in arr:
-        if j[1] > 0:
-            j[1] -= 1
-            if j[1] == 0:
-                if j[0] <= 21:
-                    health_level += 10
-                elif 22 <= j[0] <= 39:
-                    health_level += 3
-                else:
-                    health_level += 1
-        num_injured = random.randint(0,3)
+            if j[1] > 0:
+                j[1] -= 1
+                if j[1] == 0:
+                    if j[0] <= 21:
+                        health_level += 10
+                    elif 22 <= j[0] <= 39:
+                        health_level += 3
+                    else:
+                        health_level += 1
+        num_injured = r.randint(0,3)
         while num_injured != 0:
             #more likely for a starter to get injured
             #can't get injured twice
-            selector = random.randint(0,4)
+            selector = r.randint(0,4)
             if selector < 3:
-                inj = random.randint(0,21)
+                inj = r.randint(0,21)
                 if arr[inj][1] == 0:
                     inj = arr[inj]
             else:
-                inj = random.randint(22,52)
+                inj = r.randint(22,52)
                 if arr[inj][1] == 0:
                     inj = arr[inj]
             num_injured -= 1
             #set number of weeks out, with lower weeks more likely
-            weeks = random.randint(1,100)
+            weeks = r.randint(1,100)
             if weeks <= 60:
-                weeks = random.randint(1,4)
+                weeks = r.randint(1,4)
             elif 61 <= weeks <= 91:
-                weeks = random.randint(5,9)
+                weeks = r.randint(5,9)
             elif 92 <= weeks <= 97:
-                weeks = random.randint(10,12)
+                weeks = r.randint(10,12)
             else:
-                weeks = random.randint(13,18)
+                weeks = r.randint(13,18)
             inj[1] = weeks
             #reduce health level based on whether starter, backup, or other is injured
             if inj[0] <= 21:
@@ -159,7 +159,7 @@ class Team:
             else:
                 out_morale*=(1-(previous_game_factor-1)) # generates a multiplier <= ~0.89
 
-            if (1 >= random.randint(0,2)): # random event simulation
+            if (1 >= r.randint(0,2)): # random event simulation
                 major_event_factor = np.random.normal(0,1.5,None)/10
                 out_morale+=major_event_factor
         self.morale_level = np.clip(out_morale,0.01,1)
@@ -180,7 +180,9 @@ class Team:
         return (s * (1 - opp)) / ((s * (1 - opp)) + (s * (1 - opp)))
 
     def set_skill_level(self):
-        if len(self.outcomes) == 0: return
+        if len(self.outcomes) == 0: 
+            self.skill_level = self.i_skill_level
+            return
         change = (1 if self.outcomes[-1] > 0 else -1) * (self.p_w(abs(self.outcomes[-1])))
         change /= 21
         if self.skill_level > 0.5:
@@ -190,9 +192,10 @@ class Team:
 
     def set_win_level(self, isHome):
         self.set_skill_level()
+        """self.set_skill_level()
         self.set_health_level()
         self.set_morale_level()
-        self.set_homefield_advantage()
+        self.set_homefield_advantage()"""
         # self.win_level = (1 * self.skill_level) + 0 * self.health_level
         # self.win_level += 0 * self.morale_level
         # self.win_level += ((1 if isHome else 0) * 0 * self.homefield_advantage)
@@ -215,6 +218,7 @@ class Team:
 
     def set_prev_szn_rank(self, rank):
         self.prev_szn_rank = rank
+        self.set_i_skill_level()
 
     def set_capaity(self, new_capacity):
         self.capacity_filled = new_capacity
@@ -281,13 +285,11 @@ class Team:
 
     def get_sos(self):
         return np.sum(np.absolute(np.array(self.outcomes)))
-<<<<<<< HEAD
 
     def get_SB(self):
         return self.super_bowls
 
     def reset_all(self):
-        self.set_i_skill_level()
         self.division_rank = 0
         self.conference_rank = 0
         self.league_rank = 0
@@ -305,5 +307,10 @@ class Team:
 
     def reset_SB(self):
         self.super_bowls = 0
-=======
->>>>>>> cc918be7a1b11b638041bf42fbb9e2d8ac9661c0
+
+    def get_conference(self):
+        return self.conference
+
+    def get_division(self):
+        return self.division
+

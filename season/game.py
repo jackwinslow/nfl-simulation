@@ -1,10 +1,12 @@
 import random as r
 from league import team
+from league.league import League
 
 class Game:
     
     # default constructor
     def __init__(self, home, away):
+        # self.nfl = 
         self.home = home
         self.away = away
         self.isDivG = self.home.get_division() == self.away.get_division()
@@ -35,7 +37,7 @@ class Game:
             self.away.append_outcomes(home_WL)
             if self.isDivG: self.away.set_div_wins()
 
-        # print(f"{self.away.get_name()} ({round(self.away.get_win_level(), 3)}) at {self.home.get_name()} ({round(self.home.get_win_level(), 3)}) : {round(rands, 3)} <= {round(P_home_W, 3)} = {home_W}")
+        # print(f"{self.away.get_name()} ({(self.away.get_win_level())}) at {self.home.get_name()} ({(self.home.get_win_level())}) : {round(rands, 3)} <= {round(P_home_W, 3)} = {home_W}")
 
     def play_playoff_game(self, findWinner):
         # Step 1 Calculate prob of team1 beating team2

@@ -6,30 +6,24 @@ from season.playoffs import Playoffs
 from league.league import League
 import time as t
 
-"""def main():
-    rs = RegularSeason([Week([Game("Patriots","Jets"),Game("Bills","Giants"),Game("Dolphins","Rams")]),
-                        Week([Game("Dolphins","Jets"),Game("Patriots","Giants"),Game("Bills","Rams")]),
-                        Week([Game("Dolphins","Giants"),Game("Patriots","Rams"),Game("Bills","Jets")])])
+NFL = League()
 
-    return rs.execute_regular_season()
-"""
-
-SB_Winners = League.SB_counts()
+SB_Winners = NFL.SB_counts()
 
 def make_schedule(season):
     schedule = []
     for x in range(6): 
-        schedule.append(Week(season, "DIV", x))
+        schedule.append(Week(NFL, season, "DIV", x))
     for x in range(4): 
-        schedule.append(Week(season, "CONF-DIV", x))
+        schedule.append(Week(NFL, season, "CONF-DIV", x))
     for x in range(4): 
-        schedule.append(Week(season, "NON-CONF-DIV", x))
+        schedule.append(Week(NFL, season, "NON-CONF-DIV", x))
     for x in range(2): 
-        schedule.append(Week(season, "RANK", x))
-    schedule.append(Week(season, "RANDOM", x))
+        schedule.append(Week(NFL, season, "RANK", x))
+    schedule.append(Week(NFL, season, "RANDOM", x))
     return schedule
 
-trials = 1
+trials = 10
 
 def main():
     for trial in range(trials):
@@ -37,7 +31,7 @@ def main():
             schedule = make_schedule(season)
             wk_count = 0
             for wk in schedule:
-                #print('==================', wk.get_week_type(), 'Week', wk_count, "========= Season", season)
+                # print('==================', wk.get_week_type(), 'Week', wk_count, "========= Season", season)
                 for game in wk.get_games():
                     game.play_game()
                 wk_count += 1
@@ -68,8 +62,8 @@ def main():
             # for team in League.NFC.West.get_teams():
             #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-            league_rankings = League.set_league_rank()
-            """for x in range(len(league_rankings)):
+            """league_rankings = NFL.set_league_rank()
+            for x in range(len(league_rankings)):
                 num = str(x + 1) + '.'
                 print(num,'\t',league_rankings[x].get_name())"""
 
@@ -77,7 +71,7 @@ def main():
 
             # afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = League.set_div_rank()
 
-            afc_playoffs, nfc_playoffs = League.calc_playoff_seeds()
+            afc_playoffs, nfc_playoffs = NFL.calc_playoff_seeds()
 
             """print('\nAFC')
             for x in range(len(afc_playoffs)):
@@ -97,8 +91,8 @@ def main():
             new[SB_champ.get_SB()-1] += 1
             SB_Winners.update({f"{SB_champ.get_name()}": new})
             # print(f"\n\nSB WINNER: {SB_champ.get_name()}\n\n")
-            League.reset_data()
-        League.super_reset()
+            NFL.reset_data()
+        NFL.super_reset()
         
 
 
@@ -107,6 +101,7 @@ main()
 end = t.time()
 
 for x in SB_Winners:
-    print(f"{x} : {SB_Winners.get(x)}")
+    n = [a / (3*trials) for a in SB_Winners.get(x)]
+    print(f"{x} : {n}")
 
 print(f"\n\n\n{end-start}\n\n\n")
