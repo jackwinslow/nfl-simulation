@@ -56,7 +56,7 @@ class Team:
 
     def set_health_level(self):
         arr = self.get_injuries()
-        health_level = self.get_health_level
+        health_level = self.get_health_level()
         for j in arr:
         if j[1] > 0:
             j[1] -= 1
