@@ -28,7 +28,7 @@ class Team:
         self.health_level = 0.0
 
         self.morale_level = 0.0
-
+        
         self.homefield_advantage = 0.0
         self.capacity_filled = 0.0
 
@@ -59,9 +59,28 @@ class Team:
 
     def set_homefield_advantage(self):
         self.homefield_advantage += 1
+    
+    def set_morale_level(self,offseason,win,streak):
+        out_morale = self.get_morale_level()
+        if (offseason):
+            win, streak = False, 0
+            if (1 >= random.randint(0,4)):
+                major_event_factor = np.random.normal(0,2,None)/10
+                out_morale+=major_event_factor
+            i = self.get_improvement_level()
+            out_morale = out_morale*(1-i) +i
+        
+        else:
+            previous_game_factor = random.uniform(1.18,1.2+(streak*0.012))
+            if (win):
+                out_morale*=previous_game_factor # generates a multiplier >= ~1.18
+            else:
+                out_morale*=(1-(previous_game_factor-1)) # generates a multiplier <= ~0.89
 
-    def set_morale_level(self):
-        self.morale_level = 1
+            if (1 >= random.randint(0,2)): # random event simulation
+                major_event_factor = numpy.random.normal(0,1.5,None)/10
+                out_morale+=major_event_factor
+        self.morale_level = out_morale
 
     def set_record(self):
         win_count = len([w for w in self.outcomes.get_skill_level() if w > 0])
@@ -127,7 +146,7 @@ class Team:
     def get_skill_level(self):
         return self.skill_level
     
-    def get_improvement(self):
+    def get_improvement_level(self):
         return self.improvement_level
 
     def get_i_skill_level(self):
@@ -143,7 +162,7 @@ class Team:
         return self.name
 
     def get_morale(self):
-        return self.moral_level
+        return self.morale_level
 
     def get_record(self):
         return self.current_record
