@@ -103,18 +103,18 @@ class Team:
         self.injuries = arr
     
     def set_healthy(self):
-    rows, cols = (53, 2)
-    arr = []
-    for i in range(rows):
-        col = []
-        for j in range(cols):
-            if j == 0:
-                col.append(i)
-            else:
-                col.append(0)
-        arr.append(col)
-    self.health_level = 100
-    self.injuries = arr
+        rows, cols = (53, 2)
+        arr = []
+        for i in range(rows):
+            col = []
+            for j in range(cols):
+                if j == 0:
+                    col.append(i)
+                else:
+                    col.append(0)
+            arr.append(col)
+        self.health_level = 100
+        self.injuries = arr
 
     def set_homefield_advantage(self):
         self.homefield_advantage += 1
