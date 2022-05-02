@@ -38,6 +38,9 @@ class Team:
         self.improvement_level = 0.0
         
         self.super_bowls = 0
+        self.super_bowls_1 = 0
+        self.super_bowls_2 = 0
+        self.super_bowls_3 = 0
 
     """def __init__(self):
         self.name = None"""
@@ -192,10 +195,9 @@ class Team:
 
     def set_win_level(self, isHome):
         self.set_skill_level()
-        """self.set_skill_level()
-        self.set_health_level()
-        self.set_morale_level()
-        self.set_homefield_advantage()"""
+        # self.set_health_level()
+        # self.set_morale_level()
+        # self.set_homefield_advantage()
         # self.win_level = (1 * self.skill_level) + 0 * self.health_level
         # self.win_level += 0 * self.morale_level
         # self.win_level += ((1 if isHome else 0) * 0 * self.homefield_advantage)
@@ -313,4 +315,15 @@ class Team:
 
     def get_division(self):
         return self.division
+
+    def adjust(self, SB):
+        if SB >= 1:
+            self.super_bowls_1 += 1
+        if SB >= 2:
+            self.super_bowls_2 += 1
+        if SB >= 3:
+            self.super_bowls_3 += 1
+
+    def SB_Data(self):
+        print(f"{self.name} : {self.super_bowls_1}, {self.super_bowls_2}, {self.super_bowls_3}")
 

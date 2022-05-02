@@ -8,8 +8,6 @@ import time as t
 
 NFL = League()
 
-SB_Winners = NFL.SB_counts()
-
 def make_schedule(season):
     schedule = []
     for x in range(6): 
@@ -23,7 +21,7 @@ def make_schedule(season):
     schedule.append(Week(NFL, season, "RANDOM", x))
     return schedule
 
-trials = 10
+trials = 100
 
 def main():
     for trial in range(trials):
@@ -87,12 +85,12 @@ def main():
             NFC_Conf_champ = Playoffs(nfc_playoffs).get_conf_winner()
             SB_champ = Game(AFC_Conf_champ, NFC_Conf_champ).play_playoff_game(True)
             SB_champ.set_super_bowls()
-            new = SB_Winners.get(SB_champ.get_name())
-            new[SB_champ.get_SB()-1] += 1
-            SB_Winners.update({f"{SB_champ.get_name()}": new})
-            # print(f"\n\nSB WINNER: {SB_champ.get_name()}\n\n")
             NFL.reset_data()
+        for team in NFL.get_teams():
+            team.adjust(team.get_SB())
         NFL.super_reset()
+        print(trial)
+        
         
 
 
@@ -100,8 +98,7 @@ start = t.time()
 main()
 end = t.time()
 
-for x in SB_Winners:
-    n = [a / (3*trials) for a in SB_Winners.get(x)]
-    print(f"{x} : {n}")
+for team in NFL.get_teams():
+    team.SB_Data()
 
 print(f"\n\n\n{end-start}\n\n\n")

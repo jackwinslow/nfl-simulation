@@ -161,11 +161,13 @@ class League:
 
     def get_divs(self):
         return [self.AFC_EAST, self.AFC_NORTH, self.AFC_SOUTH, self.AFC_WEST, self.NFC_EAST, self.NFC_NORTH, self.NFC_SOUTH, self.NFC_WEST]
+    
+    def get_teams(self):
+        return [self.Patriots, self.Bills, self.Jets, self.Dolphins, self.Cardinals, self.Falcons, self.Ravens, self.Panthers, self.Bears, self.Bengals, self.Browns, self.Broncos, self.Cowboys, self.Lions, self.Packers, self.Texans, self.Colts, self.Jaguars, self.Chiefs, self.Raiders, self.Chargers, self.Rams, self.Vikings, self.Saints, self.Giants, self.Eagles, self.Steelers, self.Fourty_Niners, self.Seahawks, self.Buccaneers, self.Titans, self.Commanders]
         
     def super_reset(self):
-        for div in self.get_divs():
-            for team in div.get_teams():
-                team.reset_SB()
+        for team in self.get_teams():
+            team.reset_SB()
 
     def get_div(self, div):
         if div == "AFC EAST": return self.AFC_EAST
@@ -177,124 +179,23 @@ class League:
         elif div == "NFC NORTH": return self.NFC_NORTH 
         elif div == "NFC SOUTH": return self.NFC_SOUTH 
         else: return None
-
-    def SB_counts(self):
-        data = {}
-        for team in self.AFC.East.get_teams():
-            data.update({f"{team.get_name()}": [0,0,0]})
-        for team in self.AFC.North.get_teams():
-            data.update({f"{team.get_name()}": [0,0,0]})
-        for team in self.AFC.South.get_teams():
-            data.update({f"{team.get_name()}": [0,0,0]})
-        for team in self.AFC.West.get_teams():
-            data.update({f"{team.get_name()}": [0,0,0]})
-        for team in self.NFC.East.get_teams():
-            data.update({f"{team.get_name()}": [0,0,0]})
-        for team in self.NFC.North.get_teams():
-            data.update({f"{team.get_name()}": [0,0,0]})
-        for team in self.NFC.South.get_teams():
-            data.update({f"{team.get_name()}": [0,0,0]})
-        for team in self.NFC.West.get_teams():
-            data.update({f"{team.get_name()}": [0,0,0]})
-        return data
         
     def reset_data(self):
 
         # AFC
-        for team in self.AFC.East.get_teams():
+        for team in self.get_teams():
             prev_div_rank = team.division_rank
             prev_League_rank = team.league_rank
             name = team.get_name()
             conference = team.get_conference()
             division = team.get_division()
             team = Team(name, conference, division)
-
-        for team in self.AFC.North.get_teams():
-            prev_div_rank = team.division_rank
-            prev_League_rank = team.league_rank
-            name = team.get_name()
-            conference = team.get_conference()
-            division = team.get_division()
-            team = Team(name, conference, division)
-
-        for team in self.AFC.South.get_teams():
-            prev_div_rank = team.division_rank
-            prev_League_rank = team.league_rank
-            name = team.get_name()
-            conference = team.get_conference()
-            division = team.get_division()
-            team = Team(name, conference, division)
-
-        for team in self.AFC.West.get_teams():
-            prev_div_rank = team.division_rank
-            prev_League_rank = team.league_rank
-            name = team.get_name()
-            conference = team.get_conference()
-            division = team.get_division()
-            team = Team(name, conference, division)
-
-        # NFC
-        for team in self.NFC.East.get_teams():
-            prev_div_rank = team.division_rank
-            prev_League_rank = team.league_rank
-            name = team.get_name()
-            conference = team.get_conference()
-            division = team.get_division()
-            team = Team(name, conference, division)
-
-        for team in self.NFC.North.get_teams():
-            prev_div_rank = team.division_rank
-            prev_League_rank = team.league_rank
-            name = team.get_name()
-            conference = team.get_conference()
-            division = team.get_division()
-            team = Team(name, conference, division)
-
-        for team in self.NFC.South.get_teams():
-            prev_div_rank = team.division_rank
-            prev_League_rank = team.league_rank
-            name = team.get_name()
-            conference = team.get_conference()
-            division = team.get_division()
-            team = Team(name, conference, division)
-
-        for team in self.NFC.West.get_teams():
-            prev_div_rank = team.division_rank
-            prev_League_rank = team.league_rank
-            name = team.get_name()
-            conference = team.get_conference()
-            division = team.get_division()
-            team = Team(name, conference, division)
-
         #print('Reset Team Season Data')
 
     def set_league_rank(self):
         league = []
-
-        # AFC
-        for team in self.AFC.East.get_teams():
-            league.append(team)
-
-        for team in self.AFC.North.get_teams():
-            league.append(team)
-
-        for team in self.AFC.South.get_teams():
-            league.append(team)
-
-        for team in self.AFC.West.get_teams():
-            league.append(team)
-
-        # NFC
-        for team in self.NFC.East.get_teams():
-            league.append(team)
-
-        for team in self.NFC.North.get_teams():
-            league.append(team)
-
-        for team in self.NFC.South.get_teams():
-            league.append(team)
-
-        for team in self.NFC.West.get_teams():
+        
+        for team in self.get_teams():
             league.append(team)
 
         league.sort(key=lambda x: (x.get_wins(), x.get_sos()), reverse=True)
