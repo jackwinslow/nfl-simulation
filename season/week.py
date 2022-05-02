@@ -137,11 +137,11 @@ class Week:
         elif year == 2:
             mats = [[AFC[0], NFC[1]], [AFC[1], NFC[3]], [AFC[2], NFC[2]], [AFC[3], NFC[0]]]
         for mat in mats:
-            cur_div = mat[0]
-            opp_1 = mat[1].get_team(cur_div[0].get_prev_div_rank - 1)
-            opp_2 = mat[1].get_team(cur_div[1].get_prev_div_rank - 1)
-            opp_3 = mat[1].get_team(cur_div[2].get_prev_div_rank - 1)
-            opp_4 = mat[1].get_team(cur_div[3].get_prev_div_rank - 1)
+            cur_div = mat[0].get_teams()
+            opp_1 = mat[1].get_team(cur_div[0].get_prev_div_rank() - 1)
+            opp_2 = mat[1].get_team(cur_div[1].get_prev_div_rank() - 1)
+            opp_3 = mat[1].get_team(cur_div[2].get_prev_div_rank() - 1)
+            opp_4 = mat[1].get_team(cur_div[3].get_prev_div_rank() - 1)
             self.games.append(Game(cur_div[0], opp_1))
             self.games.append(Game(cur_div[1], opp_2))
             self.games.append(Game(cur_div[2], opp_3))
