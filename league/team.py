@@ -152,6 +152,4 @@ class Team:
         return len([x for x in self.outcomes if x < 0])
 
     def get_sos(self):
-        games = np.array(self.outcomes)
-        np.absolute(games)
-        return np.sum(games)
+        return np.sum(np.absolute(np.array(self.outcomes)))
