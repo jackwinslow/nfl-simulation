@@ -1,5 +1,5 @@
 import random as r
-from league.league import League
+from league import league
 from league.team import Team
 from league.division import Division
 from season.game import Game
@@ -7,8 +7,7 @@ from season.game import Game
 class Week:
 
     # default constructor, haven't made significant edits
-    def __init__(self, nfl, year, week_type, num_for_type):
-        self.nfl = nfl
+    def __init__(self, year, week_type, num_for_type):
         self.games = []
         self.week_type = week_type
         if week_type == "DIV": self.div_week(num_for_type)
@@ -21,7 +20,7 @@ class Week:
         return self.week_type
         
     def div_week(self, num_for_type):
-        for divis in self.nfl.get_divs():
+        for divis in league.get_divs():
             div = divis.get_teams()
             if num_for_type == 0:
                 self.games.append(Game(div[0], div[1]))
@@ -64,7 +63,7 @@ class Week:
                 self.games.append(Game(mat[1].get_team(3), mat[0].get_team(1)))
 
     def conf_week(self, year, num_for_type):
-        divs = self.nfl.get_divs()
+        divs = league.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
         mats = [[AFC[0], AFC[1]], [AFC[2], AFC[3]], [NFC[0], NFC[1]], [NFC[2], NFC[3]]]
@@ -77,7 +76,7 @@ class Week:
         # print('conf week', len(self.games))
 
     def nonconf_week(self, year, num_for_type):
-        divs = self.nfl.get_divs()
+        divs = league.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
         mats = [[AFC[0], NFC[1]], [AFC[2], NFC[0]], [AFC[3], NFC[3]], [AFC[1], NFC[2]]]
@@ -91,7 +90,7 @@ class Week:
 
 
     def rank_week(self, year, num_for_type):
-        divs = self.nfl.get_divs()
+        divs = league.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
         mats = [[AFC[0], AFC[1]], [AFC[2], AFC[3]], [NFC[0], NFC[1]], [NFC[2], NFC[3]]]
@@ -129,7 +128,7 @@ class Week:
                 self.games.append(Game(t, opp))
 
     def random_week(self, year):
-        divs = self.nfl.get_divs()
+        divs = league.get_divs()
         AFC = divs[:4]
         NFC = divs[4:]
         mats = [[AFC[0], NFC[3]], [AFC[1], NFC[0]], [AFC[2], NFC[1]], [AFC[3], NFC[2]]]
@@ -150,6 +149,36 @@ class Week:
             
 
     # print('rank week', len(self.games))
+
+    def wild_card(self, teams):
+        wild_round = []
+        winners = []
+        wild_round.append(Game(teams[1], teams[6]))
+        wild_round.append(Game(teams[2], teams[5]))
+        wild_round.append(Game(teams[3], teams[4]))
+        for game in wild_round: 
+            winners.append(game.play_playoff_game())
+        return winners
+    
+    def divisional_round(self, teams):
+        div_round = []
+        winners = []
+        wild_winners = self.wild_card(teams)
+        wild_winners.sort()
+        div_round.append(Game(teams[0], wild_winners.pop()))
+        div_round.append(Game(wild_winners.pop(0), wild_winners.pop()))
+        for game in div_round:
+            winners.append(game.play_playoff_game())
+        return winners
+    
+    def conference_round(self, teams):
+        div_winners = self.divisional_round(teams)
+        div_winners.sort()
+        return Game(div_winners.pop(0), div_winners.pop()).play_playoff_game()
+
+    # returns the winner of the conference    
+    def playoffs(self, teams):
+        return self.conference_round(teams)
 
     def get_games(self):
         return self.games
