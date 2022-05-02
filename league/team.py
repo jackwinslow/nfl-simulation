@@ -55,7 +55,7 @@ class Team:
         self.homefield_advantage += 1
 
     def set_morale_level(self):
-        self.morale_level += 1
+        self.morale_level = 1
 
     def set_record(self):
         win_count = len([w for w in self.outcomes.get_skill_level() if w > 0])
@@ -75,9 +75,9 @@ class Team:
         self.set_health_level()
         self.set_morale_level()
         self.set_homefield_advantage()
-        self.win_level = 0.5 * self.skill_level + 0.35 * self.health_level
-        self.win_level += 0.10 * self.morale_level
-        self.win_level += (1 if isHome else 0) * 0.05 * self.homefield_advantage
+        self.win_level = 0.9 * self.skill_level + 0 * self.health_level
+        self.win_level += 0 * self.morale_level
+        self.win_level += (1 if isHome else 0) * 0 * self.homefield_advantage
 
     def set_division_rank(self, rank):
         self.division_rank = rank

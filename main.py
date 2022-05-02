@@ -1,6 +1,7 @@
 import random as r 
 from season.week import Week
 from season.game import Game
+from season.playoffs import Playoffs
 from league.league import League
 
 """def main():
@@ -81,6 +82,12 @@ def main():
         for x in range(len(nfc_playoffs)):
             num = str(x + 1) + '.'
             print(num,'\t',nfc_playoffs[x].get_name())
+
+        AFC_Conf_champ = Playoffs(afc_playoffs).get_conf_winner()
+        NFC_Conf_champ = Playoffs(nfc_playoffs).get_conf_winner()
+        SB_champ = Game(AFC_Conf_champ, NFC_Conf_champ).play_playoff_game()
+        print(f"\n\nSB WINNER: {SB_champ.get_name()}\n\n")
+        
 
         League.reset_data()
         season += 1

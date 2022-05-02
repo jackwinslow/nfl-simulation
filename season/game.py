@@ -37,7 +37,7 @@ class Game:
 
         print(f"{self.away.get_name()} at {self.home.get_name()}")
 
-    def play_playoff_game(self):
+    def play_playoff_game(self, findWinner):
         # Step 1 Calculate prob of team1 beating team2
         self.home.set_win_level(True)
         self.away.set_win_level(False)
@@ -59,8 +59,8 @@ class Game:
         self.away.append_outcomes(home_WL)
 
         print(f"{self.away.get_name()} at {self.home.get_name()}")
-        
-        return self.home if home_W else self.away
+
+        return [self.home, self.away][0 if findWinner else 1] if home_W else [self.away, self.home][0 if findWinner else 1]
         
 
         
