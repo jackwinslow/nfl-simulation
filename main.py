@@ -26,7 +26,7 @@ def make_schedule(season):
 
 def main():
     season = 0
-    while season < 1:
+    while season < 3:
         schedule = make_schedule(season)
         wk_count = 0
         for wk in schedule:
@@ -61,14 +61,14 @@ def main():
         for team in League.NFC.West.get_teams():
             print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        league_rankings = League.calc_and_set_rank()
+        league_rankings = League.set_league_rank()
         for x in range(len(league_rankings)):
             num = str(x + 1) + '.'
-            print(num,'\t',league_rankings[x].get_name(), league_rankings[x].get_())
+            print(num,'\t',league_rankings[x].get_name(), league_rankings[x].get_sos())
 
-        afc_rankings, nfc_rankings = League.AFC.calc_and_set_rank()
+        afc_rankings, nfc_rankings = League.set_conference_rank()
 
-        afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = League.AFC.East.calc_and_set_rank()
+        afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = League.set_div_rank()
 
         League.reset_data()
         season += 1

@@ -290,7 +290,7 @@ class League:
 
         print('Reset Team Season Data')
 
-    def calc_and_set_rank():
+    def set_league_rank():
         league = []
 
         # AFC
@@ -325,7 +325,118 @@ class League:
             league[x].set_league_rank(x + 1)
 
         return league
+
+    def set_conference_rank():
+        afc = []
+        nfc = []
+
+        # AFC
+        for team in League.AFC.East.get_teams():
+            afc.append(team)
+
+        for team in League.AFC.North.get_teams():
+            afc.append(team)
+
+        for team in League.AFC.South.get_teams():
+            afc.append(team)
+
+        for team in League.AFC.West.get_teams():
+            afc.append(team)
+
+        # NFC
+        for team in League.NFC.East.get_teams():
+            nfc.append(team)
+
+        for team in League.NFC.North.get_teams():
+            nfc.append(team)
+
+        for team in League.NFC.South.get_teams():
+            nfc.append(team)
+
+        for team in League.NFC.West.get_teams():
+            nfc.append(team)
+
+        afc.sort(key=lambda x: (x.get_wins(), x.get_sos()), reverse=True)
+        nfc.sort(key=lambda x: (x.get_wins(), x.get_sos()), reverse=True)
+
+        for x in range(len(afc)):
+            afc[x].set_conference_rank(x + 1)
+
+        for x in range(len(nfc)):
+            nfc[x].set_conference_rank(x + 1)
+
+        return afc, nfc
         
+    def set_div_rank():
+        afc_east = []
+        afc_north = []
+        afc_south = []
+        afc_west = []
+        nfc_east = []
+        nfc_north = []
+        nfc_south = []
+        nfc_west = []
+
+        # AFC
+        for team in League.AFC.East.get_teams():
+            afc_east.append(team)
+
+        for team in League.AFC.North.get_teams():
+            afc_north.append(team)
+
+        for team in League.AFC.South.get_teams():
+            afc_south.append(team)
+
+        for team in League.AFC.West.get_teams():
+            afc_west.append(team)
+
+        # NFC
+        for team in League.NFC.East.get_teams():
+            nfc_east.append(team)
+
+        for team in League.NFC.North.get_teams():
+            nfc_north.append(team)
+
+        for team in League.NFC.South.get_teams():
+            nfc_south.append(team)
+
+        for team in League.NFC.West.get_teams():
+            nfc_west.append(team)
+
+        afc_east.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
+        afc_north.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
+        afc_south.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
+        afc_west.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
+        nfc_east.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
+        nfc_north.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
+        nfc_south.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
+        nfc_west.sort(key=lambda x: (x.get_wins(), x.get_div_wins(), x.get_sos()), reverse=True)
+
+        for x in range(len(afc_east)):
+            afc_east[x].set_division_rank(x + 1)
+
+        for x in range(len(afc_north)):
+            afc_north[x].set_division_rank(x + 1)
+
+        for x in range(len(afc_south)):
+            afc_south[x].set_division_rank(x + 1)
+
+        for x in range(len(afc_west)):
+            afc_west[x].set_division_rank(x + 1)
+
+        for x in range(len(nfc_east)):
+            nfc_east[x].set_division_rank(x + 1)
+
+        for x in range(len(nfc_north)):
+            nfc_north[x].set_division_rank(x + 1)
+
+        for x in range(len(nfc_south)):
+            nfc_south[x].set_division_rank(x + 1)
+
+        for x in range(len(nfc_west)):
+            nfc_west[x].set_division_rank(x + 1)
+
+        return afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west
 
     # League Standings
     # - This is really only important for the NFL Draft

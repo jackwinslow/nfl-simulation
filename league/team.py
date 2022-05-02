@@ -137,7 +137,7 @@ class Team:
         return self.current_record
     
     def get_div_wins(self):
-        return self.get_div_wins
+        return self.div_wins
 
     def get_win_prob(self):
         return self.win_prob
