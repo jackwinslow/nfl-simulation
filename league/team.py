@@ -51,7 +51,7 @@ class Team:
         self.sos = sos
 
     def set_i_skill_level(self):
-        prev_influence = 1.0 - (self.get_prev_szn_rank() / 64.0)
+        prev_influence = 1.0 - (self.get_prev_szn_rank() / 34.0)
         self.i_skill_level = self.improvement_level + prev_influence
 
     def set_health_level(self):
