@@ -27,7 +27,7 @@ def make_schedule(season):
 
 def main():
     season = 0
-    while season < 50:
+    while season < 60000:
         schedule = make_schedule(season)
         wk_count = 0
         for wk in schedule:
