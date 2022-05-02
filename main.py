@@ -21,7 +21,7 @@ def make_schedule(season):
         schedule.append(Week(season, "NON-CONF-DIV", x))
     for x in range(2): 
         schedule.append(Week(season, "RANK", x))
-    # schedule.append(Week(season, "RIVAL", x))
+    schedule.append(Week(season, "RANDOM", x))
     return schedule
 
 def main():

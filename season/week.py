@@ -14,7 +14,7 @@ class Week:
         elif week_type == "CONF-DIV": self.conf_week(year, num_for_type)
         elif week_type == "NON-CONF-DIV": self.nonconf_week(year, num_for_type)
         elif week_type == "RANK": self.rank_week(year, num_for_type)
-        else: self.random_week(num_for_type)
+        else: self.random_week(year)
 
     def get_week_type(self):
         return self.week_type
@@ -127,28 +127,28 @@ class Week:
                 opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
 
-        def random_week(self, year):
-            divs = league.get_divs()
-            AFC = divs[:4]
-            NFC = divs[4:]
-            mats = [[AFC[0], NFC[3]], [AFC[1], NFC[0]], [AFC[2], NFC[1]], [AFC[3], NFC[2]]]
-            if year == 1:
-                mats = [[AFC[0], NFC[2]], [AFC[1], NFC[1]], [AFC[2], NFC[0]], [AFC[3], NFC[3]]]
-            elif year == 2:
-                mats = [[AFC[0], NFC[1]], [AFC[1], NFC[3]], [AFC[2], NFC[2]], [AFC[3], NFC[0]]]
-            for mat in mats:
-                cur_div = mat[0]
-                opp_1 = mat[1].get_team(cur_div[0].get_prev_div_rank - 1)
-                opp_2 = mat[1].get_team(cur_div[1].get_prev_div_rank - 1)
-                opp_3 = mat[1].get_team(cur_div[2].get_prev_div_rank - 1)
-                opp_4 = mat[1].get_team(cur_div[3].get_prev_div_rank - 1)
-                self.games.append(Game(cur_div[0], opp_1))
-                self.games.append(Game(cur_div[1], opp_2))
-                self.games.append(Game(cur_div[2], opp_3))
-                self.games.append(Game(cur_div[3], opp_4))
-                
+    def random_week(self, year):
+        divs = league.get_divs()
+        AFC = divs[:4]
+        NFC = divs[4:]
+        mats = [[AFC[0], NFC[3]], [AFC[1], NFC[0]], [AFC[2], NFC[1]], [AFC[3], NFC[2]]]
+        if year == 1:
+            mats = [[AFC[0], NFC[2]], [AFC[1], NFC[1]], [AFC[2], NFC[0]], [AFC[3], NFC[3]]]
+        elif year == 2:
+            mats = [[AFC[0], NFC[1]], [AFC[1], NFC[3]], [AFC[2], NFC[2]], [AFC[3], NFC[0]]]
+        for mat in mats:
+            cur_div = mat[0]
+            opp_1 = mat[1].get_team(cur_div[0].get_prev_div_rank - 1)
+            opp_2 = mat[1].get_team(cur_div[1].get_prev_div_rank - 1)
+            opp_3 = mat[1].get_team(cur_div[2].get_prev_div_rank - 1)
+            opp_4 = mat[1].get_team(cur_div[3].get_prev_div_rank - 1)
+            self.games.append(Game(cur_div[0], opp_1))
+            self.games.append(Game(cur_div[1], opp_2))
+            self.games.append(Game(cur_div[2], opp_3))
+            self.games.append(Game(cur_div[3], opp_4))
+            
 
-        # print('rank week', len(self.games))
+    # print('rank week', len(self.games))
 
     def get_games(self):
         return self.games
