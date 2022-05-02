@@ -1,6 +1,7 @@
 import random as r 
 from season.week import Week
 from season.game import Game
+from season.playoffs import Playoffs
 from league.league import League
 
 """def main():
@@ -24,12 +25,13 @@ def make_schedule(season):
     schedule.append(Week(season, "RANDOM", x))
     return schedule
 
+trials = 100
+
 def main():
-    for trial in range(1000):
+    for trial in range(trials):
         for season in range(3):
-            schedule = make_schedule(season)
             wk_count = 0
-            for wk in schedule:
+            for wk in make_schedule(season):
                 # print('==================', wk.get_week_type(), 'Week', wk_count, "========= Season", season)
                 for game in wk.get_games():
                     game.play_game()
@@ -62,9 +64,9 @@ def main():
             #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
             league_rankings = League.set_league_rank()
-            for x in range(len(league_rankings)):
+            """for x in range(len(league_rankings)):
                 num = str(x + 1) + '.'
-                print(num,'\t',league_rankings[x].get_name())
+                print(num,'\t',league_rankings[x].get_name())"""
 
             # afc_rankings, nfc_rankings = League.set_conference_rank()
 
@@ -72,7 +74,7 @@ def main():
 
             afc_playoffs, nfc_playoffs = League.calc_playoff_seeds()
 
-            print('\nAFC')
+            """print('\nAFC')
             for x in range(len(afc_playoffs)):
                 num = str(x + 1) + '.'
                 print(num,'\t',afc_playoffs[x].get_name())
@@ -80,9 +82,17 @@ def main():
             print('\nNFC')
             for x in range(len(nfc_playoffs)):
                 num = str(x + 1) + '.'
-                print(num,'\t',nfc_playoffs[x].get_name())
+                print(num,'\t',nfc_playoffs[x].get_name())"""
+
+            AFC_champ = Playoffs(afc_playoffs).get_conf_winner()
+            NFC_champ = Playoffs(nfc_playoffs).get_conf_winner()
+            SB_champ = Game(AFC_champ, NFC_champ).play_playoff_game(True)
+            
+            print(SB_champ.get_name())
 
             League.reset_data()
+        
+        print()
 
 
 main()

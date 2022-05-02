@@ -74,19 +74,23 @@ class Team:
     def set_div_wins_zero(self):
         self.div_wins = 0
 
+    def p_w(self, opp):
+        return (self.win_level * (1 - opp)) / ((self.win_level * (1 - opp)) + (opp * (1 - self.win_level)))
+
     def set_skill_level(self):
-        change = sum([x for x in self.outcomes])
-        WL_factor = (len(self.outcomes)/21) * change 
-        self.skill_level = self.i_skill_level + WL_factor  
+        if len(self.outcomes) == 0: 
+            self.skill_level = self.i_skill_level
+            return
+        change = (1 if self.outcomes[-1] > 0 else -1) * (self.p_w(abs(self.outcomes[-1])))
+        change /= 21
+        if self.skill_level > 0.5:
+            self.skill_level += (1 - self.skill_level) * change
+        else:
+            self.skill_level += self.skill_level * change  
 
     def set_win_level(self, isHome):
         self.set_skill_level()
-        self.set_health_level()
-        self.set_morale_level()
-        self.set_homefield_advantage()
-        self.win_level = 0.5 * self.skill_level + 0.35 * self.health_level
-        self.win_level += 0.10 * self.morale_level
-        self.win_level += (1 if isHome else 0) * 0.05 * self.homefield_advantage
+        self.win_level = self.skill_level
 
     def set_win_level_zero(self):
         self.win_level = 0.0
