@@ -37,31 +37,34 @@ def main():
 
         # AFC
         for team in League.AFC.East.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
         for team in League.AFC.North.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
         for team in League.AFC.South.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
         for team in League.AFC.West.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
         # NFC
         for team in League.NFC.East.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
         for team in League.NFC.North.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
         for team in League.NFC.South.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
         for team in League.NFC.West.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        
+        league_rankings = League.calc_and_set_rank()
+        for x in range(len(league_rankings)):
+            num = str(x + 1) + '.'
+            print(num,'\t',league_rankings[x].get_name())
         League.reset_data()
         season += 1
 

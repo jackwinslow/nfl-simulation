@@ -249,6 +249,42 @@ class League:
             team.outcomes = []
 
         print('Reset Team Season Data')
+
+    def calc_and_set_rank():
+        league = []
+
+        # AFC
+        for team in League.AFC.East.get_teams():
+            league.append(team)
+
+        for team in League.AFC.North.get_teams():
+            league.append(team)
+
+        for team in League.AFC.South.get_teams():
+            league.append(team)
+
+        for team in League.AFC.West.get_teams():
+            league.append(team)
+
+        # NFC
+        for team in League.NFC.East.get_teams():
+            league.append(team)
+
+        for team in League.NFC.North.get_teams():
+            league.append(team)
+
+        for team in League.NFC.South.get_teams():
+            league.append(team)
+
+        for team in League.NFC.West.get_teams():
+            league.append(team)
+
+        league.sort(key=lambda x: (x.get_wins(), x.get_sos()), reverse=True)
+
+        for x in range(len(league)):
+            league[x].set_league_rank(x + 1)
+
+        return league
         
 
     # League Standings
