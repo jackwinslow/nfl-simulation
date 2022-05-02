@@ -150,5 +150,12 @@ class Week:
 
     # print('rank week', len(self.games))
 
+    def wild_card(self, teams):
+        playoffs = []
+        playoffs.append(Game(teams[1], teams[6]))
+        playoffs.append(Game(teams[2], teams[5]))
+        playoffs.append(Game(teams[3], teams[4]))
+        
+
     def get_games(self):
         return self.games
