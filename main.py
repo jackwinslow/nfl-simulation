@@ -27,45 +27,45 @@ def make_schedule(season):
 
 def main():
     season = 0
-    while season < 1:
+    while season < 50:
         schedule = make_schedule(season)
         wk_count = 0
         for wk in schedule:
-            print('==================', wk.get_week_type(), 'Week', wk_count, "========= Season", season)
+            # print('==================', wk.get_week_type(), 'Week', wk_count, "========= Season", season)
             for game in wk.get_games():
                 game.play_game()
             wk_count += 1
 
-        # AFC
-        for team in League.AFC.East.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
+        # # AFC
+        # for team in League.AFC.East.get_teams():
+        #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        for team in League.AFC.North.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
+        # for team in League.AFC.North.get_teams():
+        #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        for team in League.AFC.South.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
+        # for team in League.AFC.South.get_teams():
+        #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        for team in League.AFC.West.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
+        # for team in League.AFC.West.get_teams():
+        #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        # NFC
-        for team in League.NFC.East.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
+        # # NFC
+        # for team in League.NFC.East.get_teams():
+        #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        for team in League.NFC.North.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
+        # for team in League.NFC.North.get_teams():
+        #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        for team in League.NFC.South.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
+        # for team in League.NFC.South.get_teams():
+        #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
-        for team in League.NFC.West.get_teams():
-            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
+        # for team in League.NFC.West.get_teams():
+        #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
         league_rankings = League.set_league_rank()
         for x in range(len(league_rankings)):
             num = str(x + 1) + '.'
-            print(num,'\t',league_rankings[x].get_name(), league_rankings[x].get_sos())
+            print(num,'\t',league_rankings[x].get_name())
 
         # afc_rankings, nfc_rankings = League.set_conference_rank()
 

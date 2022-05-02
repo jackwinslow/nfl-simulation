@@ -44,6 +44,12 @@ class Team:
     def append_outcomes(self, outcome):
         self.outcomes.append(outcome)
 
+    def set_outcomes(self, outcomes):
+        self.outcomes = outcomes
+
+    def set_sos(self, sos):
+        self.sos = sos
+
     def set_i_skill_level(self):
         prev_influence = 1.0 - (self.get_prev_szn_rank() / 64.0)
         self.i_skill_level = self.improvement_level + prev_influence
@@ -65,6 +71,9 @@ class Team:
     def set_div_wins(self):
         self.div_wins += 1
 
+    def set_div_wins_zero(self):
+        self.div_wins = 0
+
     def set_skill_level(self):
         change = sum([x for x in self.outcomes])
         WL_factor = (len(self.outcomes)/21) * change 
@@ -78,6 +87,9 @@ class Team:
         self.win_level = 0.9 * self.skill_level + 0 * self.health_level
         self.win_level += 0 * self.morale_level
         self.win_level += (1 if isHome else 0) * 0 * self.homefield_advantage
+
+    def set_win_level_zero(self):
+        self.win_level = 0.0
 
     def set_division_rank(self, rank):
         self.division_rank = rank
