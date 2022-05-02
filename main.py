@@ -26,7 +26,7 @@ def make_schedule(season):
 
 def main():
     season = 0
-    while season < 3:
+    while season < 1:
         schedule = make_schedule(season)
         wk_count = 0
         for wk in schedule:
@@ -66,9 +66,21 @@ def main():
             num = str(x + 1) + '.'
             print(num,'\t',league_rankings[x].get_name(), league_rankings[x].get_sos())
 
-        afc_rankings, nfc_rankings = League.set_conference_rank()
+        # afc_rankings, nfc_rankings = League.set_conference_rank()
 
-        afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = League.set_div_rank()
+        # afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = League.set_div_rank()
+
+        afc_playoffs, nfc_playoffs = League.calc_playoff_seeds()
+
+        print('\nAFC')
+        for x in range(len(afc_playoffs)):
+            num = str(x + 1) + '.'
+            print(num,'\t',afc_playoffs[x].get_name())
+
+        print('\nNFC')
+        for x in range(len(nfc_playoffs)):
+            num = str(x + 1) + '.'
+            print(num,'\t',nfc_playoffs[x].get_name())
 
         League.reset_data()
         season += 1

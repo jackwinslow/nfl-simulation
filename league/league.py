@@ -438,5 +438,35 @@ class League:
 
         return afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west
 
+
+    def calc_playoff_seeds():
+        afc = []
+        nfc = []
+
+        afc_rankings, nfc_rankings = League.set_conference_rank()
+        afc_east, afc_north, afc_south, afc_west, nfc_east, nfc_north, nfc_south, nfc_west = League.set_div_rank()
+
+        # AFC
+        afc.append(afc_east[0]); afc_rankings.remove(afc_east[0])
+        afc.append(afc_north[0]); afc_rankings.remove(afc_north[0])
+        afc.append(afc_south[0]); afc_rankings.remove(afc_south[0])
+        afc.append(afc_west[0]); afc_rankings.remove(afc_west[0])
+        afc.append(afc_rankings[0])
+        afc.append(afc_rankings[1])
+        afc.append(afc_rankings[2])
+
+        # NFC
+        nfc.append(nfc_east[0]); nfc_rankings.remove(nfc_east[0])
+        nfc.append(nfc_north[0]); nfc_rankings.remove(nfc_north[0])
+        nfc.append(nfc_south[0]); nfc_rankings.remove(nfc_south[0])
+        nfc.append(nfc_west[0]); nfc_rankings.remove(nfc_west[0])
+        nfc.append(nfc_rankings[0])
+        nfc.append(nfc_rankings[1])
+        nfc.append(nfc_rankings[2])
+
+        return afc, nfc
+
+
+
     # League Standings
     # - This is really only important for the NFL Draft
