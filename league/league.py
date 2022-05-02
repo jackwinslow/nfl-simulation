@@ -1,5 +1,3 @@
-from tkinter import Pack
-from xdrlib import Packer
 from league.team import Team
 from league.division import Division
 from league.conference import Conference
@@ -157,22 +155,100 @@ def get_divs():
 
 class League:
 
+    AFC = Conference(AFC_EAST, AFC_NORTH, AFC_SOUTH, AFC_WEST)
+    NFC = Conference(NFC_EAST, NFC_NORTH, NFC_SOUTH, NFC_WEST)  
+
     def __init__(self):
-        AFC = Conference(self.AFC_EAST, self.AFC_NORTH, self.AFC_SOUTH, self.AFC_WEST)
-        NFC = Conference(self.NFC_EAST, self.NFC_NORTH, self.NFC_SOUTH, self.NFC_WEST)  
+        self = self
 
     def get_div(self, div):
-        if div == "AFC EAST": return self.AFC_EAST
-        elif div == "AFC WEST": return self.AFC_WEST 
-        elif div == "AFC NORTH": return self.AFC_NORTH 
-        elif div == "AFC SOUTH": return self.AFC_SOUTH 
-        elif div == "NFC EAST": return self.NFC_EAST
-        elif div == "NFC WEST": return self.NFC_WEST 
-        elif div == "NFC NORTH": return self.NFC_NORTH 
-        elif div == "NFC SOUTH": return self.NFC_SOUTH 
+        if div == "AFC EAST": return AFC_EAST
+        elif div == "AFC WEST": return AFC_WEST 
+        elif div == "AFC NORTH": return AFC_NORTH 
+        elif div == "AFC SOUTH": return AFC_SOUTH 
+        elif div == "NFC EAST": return NFC_EAST
+        elif div == "NFC WEST": return NFC_WEST 
+        elif div == "NFC NORTH": return NFC_NORTH 
+        elif div == "NFC SOUTH": return NFC_SOUTH 
         else: return None
 
+    def reset_data():
 
+        # AFC
+        for team in League.AFC.East.get_teams():
+            team.prev_division_rank = team.division_rank
+            team.prev_szn_rank = team.league_rank
+            team.division_rank = 0
+            team.conference_rank = 0
+            team.league_rank = 0
+            team.div_wins = 0
+            team.outcomes = []
+
+        for team in League.AFC.North.get_teams():
+            team.prev_division_rank = team.division_rank
+            team.prev_szn_rank = team.league_rank
+            team.division_rank = 0
+            team.conference_rank = 0
+            team.league_rank = 0
+            team.div_wins = 0
+            team.outcomes = []
+
+        for team in League.AFC.South.get_teams():
+            team.prev_division_rank = team.division_rank
+            team.prev_szn_rank = team.league_rank
+            team.division_rank = 0
+            team.conference_rank = 0
+            team.league_rank = 0
+            team.div_wins = 0
+            team.outcomes = []
+
+        for team in League.AFC.West.get_teams():
+            team.prev_division_rank = team.division_rank
+            team.prev_szn_rank = team.league_rank
+            team.division_rank = 0
+            team.conference_rank = 0
+            team.league_rank = 0
+            team.div_wins = 0
+            team.outcomes = []
+
+        # NFC
+        for team in League.NFC.East.get_teams():
+            team.prev_division_rank = team.division_rank
+            team.prev_szn_rank = team.league_rank
+            team.division_rank = 0
+            team.conference_rank = 0
+            team.league_rank = 0
+            team.div_wins = 0
+            team.outcomes = []
+
+        for team in League.NFC.North.get_teams():
+            team.prev_division_rank = team.division_rank
+            team.prev_szn_rank = team.league_rank
+            team.division_rank = 0
+            team.conference_rank = 0
+            team.league_rank = 0
+            team.div_wins = 0
+            team.outcomes = []
+
+        for team in League.NFC.South.get_teams():
+            team.prev_division_rank = team.division_rank
+            team.prev_szn_rank = team.league_rank
+            team.division_rank = 0
+            team.conference_rank = 0
+            team.league_rank = 0
+            team.div_wins = 0
+            team.outcomes = []
+
+        for team in League.NFC.West.get_teams():
+            team.prev_division_rank = team.division_rank
+            team.prev_szn_rank = team.league_rank
+            team.division_rank = 0
+            team.conference_rank = 0
+            team.league_rank = 0
+            team.div_wins = 0
+            team.outcomes = []
+
+        print('Reset Team Season Data')
         
 
     # League Standings

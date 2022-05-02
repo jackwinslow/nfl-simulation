@@ -1,6 +1,7 @@
 import random as r 
 from season.week import Week
 from season.game import Game
+from league.league import League
 
 """def main():
     rs = RegularSeason([Week([Game("Patriots","Jets"),Game("Bills","Giants"),Game("Dolphins","Rams")]),
@@ -27,14 +28,41 @@ def main():
     season = 0
     while season < 3:
         schedule = make_schedule(season)
-        trial_num = 0
         wk_count = 0
         for wk in schedule:
             print('==================', wk.get_week_type(), 'Week', wk_count, "========= Season", season)
             for game in wk.get_games():
                 game.play_game()
             wk_count += 1
+
+        # AFC
+        for team in League.AFC.East.get_teams():
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+
+        for team in League.AFC.North.get_teams():
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+
+        for team in League.AFC.South.get_teams():
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+
+        for team in League.AFC.West.get_teams():
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+
+        # NFC
+        for team in League.NFC.East.get_teams():
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+
+        for team in League.NFC.North.get_teams():
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+
+        for team in League.NFC.South.get_teams():
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+
+        for team in League.NFC.West.get_teams():
+            print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']')
+
         
+        League.reset_data()
         season += 1
 
 

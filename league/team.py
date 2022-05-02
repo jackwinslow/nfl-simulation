@@ -100,6 +100,9 @@ class Team:
         if self.schedule.count(game) == 0:
             self.schedule.append(game)
 
+    def get_outcomes(self):
+        return self.outcomes
+
     def get_division(self):
         return self.division
     
@@ -144,3 +147,24 @@ class Team:
 
     def get_health_level(self):
         return self.health_level
+
+    def get_wins(self):
+        count = 0
+        for num in self.outcomes:
+            if num > 0:
+                count += 1
+        return count
+
+    def get_losses(self):
+        count = 0
+        for num in self.outcomes:
+            if num < 0:
+                count += 1
+        return count
+
+    def get_sos(self):
+        sum = 0
+        for num in self.outcomes:
+            sum += abs(num)
+
+        return sum
