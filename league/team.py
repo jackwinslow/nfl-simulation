@@ -102,6 +102,7 @@ class Team:
         self.health_level = health_level
         self.injuries = arr
     
+    #run at start of season
     def set_healthy(self):
         rows, cols = (53, 2)
         arr = []
