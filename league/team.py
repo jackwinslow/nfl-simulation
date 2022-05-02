@@ -45,8 +45,8 @@ class Team:
         self.outcomes.append(outcome)
 
     def set_i_skill_level(self):
-        prev_influence = 1.0 - (self.get_prev_szn_rank() / 100.0)
-        return self.improvement_level + prev_influence
+        prev_influence = 1.0 - (self.get_prev_szn_rank() / 64.0)
+        self.i_skill_level = self.improvement_level + prev_influence
 
     def set_health_level(self):
         self.health_level += 1
@@ -96,10 +96,6 @@ class Team:
 
     def set_capaity(self, new_capacity):
         self.capacity_filled = new_capacity
-
-    def add_game(self, game):
-        if self.schedule.count(game) == 0:
-            self.schedule.append(game)
 
     def get_outcomes(self):
         return self.outcomes
