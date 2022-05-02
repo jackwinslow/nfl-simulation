@@ -80,7 +80,7 @@ class Team:
             if (1 >= random.randint(0,2)): # random event simulation
                 major_event_factor = np.random.normal(0,1.5,None)/10
                 out_morale+=major_event_factor
-        self.morale_level = np.clip(out_morale,0,1)
+        self.morale_level = np.clip(out_morale,0.01,1)
 
     def set_record(self):
         win_count = len([w for w in self.outcomes.get_skill_level() if w > 0])
