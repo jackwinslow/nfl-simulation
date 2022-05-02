@@ -2,43 +2,40 @@ import random as r
 
 class Team:
 
-    name = ""
-    conference = ""
-    division = ""
-
-    division_rank = 0
-    conference_rank = 0
-    league_rank = 0
-
-    schedule = []
-
-    current_record = [0, 0]
-    div_wins = 0
-    # strength of schedule
-    sos = 0.0
-    
-    outcomes = []
-    skill_level = 0.0
-    i_skill_level = 0.0
-    win_level = 0.0
-
-    injuries = []
-    health_level = 0.0
-
-    morale_level = 0.0
-
-    homefield_advantage = 0.0
-    capacity_filled = 0.0
-
-    prev_szn_rank = 0
-    salary_cap = 0
-
-    improvement_level = 0.0
-
     def __init__(self, name, conference, division):
         self.name = name
         self.conference = conference
         self.division = division
+
+        self.division_rank = 0
+        self.conference_rank = 0
+        self.league_rank = 0
+
+        self.schedule = []
+
+        self.current_record = [0, 0]
+        self.div_wins = 0
+        # strength of schedule
+        self.sos = 0.0
+        
+        self.outcomes = []
+        self.skill_level = 0.0
+        self.i_skill_level = 0.0
+        self.win_level = 0.0
+
+        self.injuries = []
+        self.health_level = 0.0
+
+        self.morale_level = 0.0
+
+        self.homefield_advantage = 0.0
+        self.capacity_filled = 0.0
+
+        self.prev_division_rank = 0
+        self.prev_szn_rank = 0
+        self.salary_cap = 0
+
+        self.improvement_level = 0.0
 
     """def __init__(self):
         self.name = None"""
@@ -90,6 +87,9 @@ class Team:
     def set_league_rank(self, rank):
         self.league_rank = rank
     
+    def set_prev_division_rank(self, rank):
+        self.prev_division_rank = rank
+
     def set_prev_szn_rank(self, rank):
         self.prev_szn_rank = rank
 
@@ -110,7 +110,7 @@ class Team:
         return self.prev_szn_rank
     
     def get_prev_div_rank(self):
-        return self.division_rank
+        return self.prev_division_rank
 
     def get_skill_level(self):
         return self.skill_level

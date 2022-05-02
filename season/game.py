@@ -2,10 +2,6 @@ import random as r
 from league import team
 
 class Game:
-
-    """home = team.Team()
-    away = team.Team()"""
-    isDivG = False
     
     # default constructor
     def __init__(self, home, away):
@@ -39,7 +35,7 @@ class Game:
         self.home.append_outcomes(away_WL)
         self.away.append_outcomes(home_WL)
 
-        print(f"{self.away.get_name()} vs {self.home.get_name()}")
+        print(f"{self.away.get_name()} at {self.home.get_name()}")
         
 
         

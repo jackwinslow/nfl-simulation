@@ -27,12 +27,13 @@ def main():
     season = 0
     while season < 3:
         schedule = make_schedule(season)
-        print("HERE")
         trial_num = 0
+        wk_count = 0
         for wk in schedule:
-            print('week')
+            print('==================', wk.get_week_type(), 'Week', wk_count, "========= Season", season)
             for game in wk.get_games():
                 game.play_game()
+            wk_count += 1
         
         season += 1
 

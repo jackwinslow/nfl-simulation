@@ -2,8 +2,6 @@ import random as r
 
 class RegularSeason:
 
-    regular_season_schedule = []
-
     # default constructor
     def __init__(self, regular_season_schedule):
         self.regular_season_schedule = regular_season_schedule

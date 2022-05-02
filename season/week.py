@@ -6,15 +6,18 @@ from season.game import Game
 
 class Week:
 
-    games = []
-
     # default constructor, haven't made significant edits
     def __init__(self, year, week_type, num_for_type):
+        self.games = []
+        self.week_type = week_type
         if week_type == "DIV": self.div_week(num_for_type)
         elif week_type == "CONF-DIV": self.conf_week(year, num_for_type)
         elif week_type == "NON-CONF-DIV": self.nonconf_week(year, num_for_type)
         elif week_type == "RANK": self.rank_week(year, num_for_type)
         else: self.rival_week(num_for_type)
+
+    def get_week_type(self):
+        return self.week_type
         
     def div_week(self, num_for_type):
         for divis in league.get_divs():
@@ -37,6 +40,8 @@ class Week:
             elif num_for_type == 5:
                 self.games.append(Game(div[2], div[0]))
                 self.games.append(Game(div[3], div[1]))
+
+        # print('div week', len(self.games))
 
     def run_mats(self, year, num_for_type, mats):
         for mat in mats:
@@ -68,6 +73,8 @@ class Week:
             mats = [[AFC[0], AFC[2]], [AFC[1], AFC[3]], [NFC[0], NFC[2]], [NFC[1], NFC[3]]]
         self.run_mats(year, num_for_type, mats)
 
+        # print('conf week', len(self.games))
+
     def nonconf_week(self, year, num_for_type):
         divs = league.get_divs()
         AFC = divs[:4]
@@ -78,6 +85,8 @@ class Week:
         elif year == 2:
             mats = [[AFC[0], NFC[3]], [AFC[2], NFC[2]], [AFC[3], NFC[1]], [AFC[1], NFC[0]]]
         self.run_mats(year, num_for_type, mats)
+
+        # print('nonconf week', len(self.games))
 
 
     def rank_week(self, year, num_for_type):
@@ -93,36 +102,32 @@ class Week:
         NFC_MATS = mats[2:]
         if num_for_type == 0:
             for t in AFC_MATS[0][0].get_teams():
-                opp = AFC_MATS[1][0].get_team(t.get_prev_div_rank())
+                opp = AFC_MATS[1][0].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
             for t in AFC_MATS[0][1].get_teams():
-                opp = AFC_MATS[1][1].get_team(t.get_prev_div_rank())
+                opp = AFC_MATS[1][1].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
             for t in NFC_MATS[0][0].get_teams():
-                opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank())
+                opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
             for t in NFC_MATS[0][1].get_teams():
-                opp = NFC_MATS[1][1].get_team(t.get_prev_div_rank())
+                opp = NFC_MATS[1][1].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
         elif num_for_type == 1:
             for t in AFC_MATS[0][0].get_teams():
-                opp = AFC_MATS[1][1].get_team(t.get_prev_div_rank())
+                opp = AFC_MATS[1][1].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
             for t in AFC_MATS[0][1].get_teams():
-                opp = AFC_MATS[1][0].get_team(t.get_prev_div_rank())
+                opp = AFC_MATS[1][0].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
             for t in NFC_MATS[0][0].get_teams():
-                opp = NFC_MATS[1][1].get_team(t.get_prev_div_rank())
+                opp = NFC_MATS[1][1].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
             for t in NFC_MATS[0][1].get_teams():
-                opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank())
+                opp = NFC_MATS[1][0].get_team(t.get_prev_div_rank() - 1)
                 self.games.append(Game(t, opp))
+
+        # print('rank week', len(self.games))
 
     def get_games(self):
         return self.games
-
-    def execute_week(self):
-        result = []
-        for matchup in range(0, len(self.week_schedule)):
-            result.append(self.week_schedule[matchup].play_game())
-        return result
