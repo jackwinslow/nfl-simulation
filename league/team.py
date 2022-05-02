@@ -16,7 +16,6 @@ class Team:
 
         self.current_record = [0, 0]
         self.div_wins = 0
-        # strength of schedule
         self.sos = 0.0
         
         self.outcomes = []
@@ -37,9 +36,14 @@ class Team:
         self.salary_cap = 0
 
         self.improvement_level = 0.0
+        
+        self.super_bowls = 0
 
     """def __init__(self):
         self.name = None"""
+
+    def set_super_bowls(self):
+        self.super_bowls += 1
     
     def append_outcomes(self, outcome):
         self.outcomes.append(outcome)
@@ -51,8 +55,9 @@ class Team:
         self.sos = sos
 
     def set_i_skill_level(self):
-        prev_influence = 1.0 - (self.get_prev_szn_rank() / 64.0)
+        prev_influence = 1 - (self.get_prev_szn_rank() / 34.0)
         self.i_skill_level = self.improvement_level + prev_influence
+        self.skill_level = self.i_skill_level
 
     def set_health_level(self):
         self.health_level += 1
@@ -74,19 +79,28 @@ class Team:
     def set_div_wins_zero(self):
         self.div_wins = 0
 
+    def p_w(self, opp):
+        s = self.win_level
+        return (s * (1 - opp)) / ((s * (1 - opp)) + (s * (1 - opp)))
+
     def set_skill_level(self):
-        change = sum([x for x in self.outcomes])
-        WL_factor = (len(self.outcomes)/21) * change 
-        self.skill_level = self.i_skill_level + WL_factor  
+        if len(self.outcomes) == 0: return
+        change = (1 if self.outcomes[-1] > 0 else -1) * (self.p_w(abs(self.outcomes[-1])))
+        change /= 21
+        if self.skill_level > 0.5:
+            self.skill_level += (1 - self.skill_level) * change
+        else:
+            self.skill_level += self.skill_level * change
 
     def set_win_level(self, isHome):
         self.set_skill_level()
         self.set_health_level()
         self.set_morale_level()
         self.set_homefield_advantage()
-        self.win_level = 0.9 * self.skill_level + 0 * self.health_level
-        self.win_level += 0 * self.morale_level
-        self.win_level += (1 if isHome else 0) * 0 * self.homefield_advantage
+        # self.win_level = (1 * self.skill_level) + 0 * self.health_level
+        # self.win_level += 0 * self.morale_level
+        # self.win_level += ((1 if isHome else 0) * 0 * self.homefield_advantage)
+        self.win_level = self.skill_level
 
     def set_win_level_zero(self):
         self.win_level = 0.0
@@ -108,6 +122,9 @@ class Team:
 
     def set_capaity(self, new_capacity):
         self.capacity_filled = new_capacity
+
+    def get_super_bowls(self):
+        return self.super_bowls
 
     def get_outcomes(self):
         return self.outcomes
@@ -165,3 +182,26 @@ class Team:
 
     def get_sos(self):
         return np.sum(np.absolute(np.array(self.outcomes)))
+
+    def get_SB(self):
+        return self.super_bowls
+
+    def reset_all(self):
+        self.set_i_skill_level()
+        self.division_rank = 0
+        self.conference_rank = 0
+        self.league_rank = 0
+        self.schedule = []
+        self.current_record = [0, 0]
+        self.div_wins = 0
+        self.sos = 0.0
+        self.outcomes = []
+        self.injuries = []
+        self.health_level = 0.0
+        self.morale_level = 0.0
+        self.homefield_advantage = 0.0
+        self.capacity_filled = 0.0
+        self.improvement_level = 0.0
+
+    def reset_SB(self):
+        self.super_bowls = 0
