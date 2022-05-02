@@ -35,7 +35,7 @@ class Game:
         self.home.append_outcomes(away_WL)
         self.away.append_outcomes(home_WL)
 
-        print(f"{self.away.get_name()} at {self.home.get_name()}")
+        # print(f"{self.away.get_name()} at {self.home.get_name()}")
 
     def play_playoff_game(self):
         # Step 1 Calculate prob of team1 beating team2

@@ -208,85 +208,101 @@ class League:
 
         # AFC
         for team in League.AFC.East.get_teams():
-            team.prev_division_rank = team.division_rank
-            team.prev_szn_rank = team.league_rank
-            team.division_rank = 0
-            team.conference_rank = 0
-            team.league_rank = 0
-            team.div_wins = 0
-            team.outcomes = []
+            team.set_prev_division_rank(team.division_rank)
+            team.set_prev_szn_rank(team.league_rank)
+            team.set_division_rank(0)
+            team.set_conference_rank(0)
+            team.set_league_rank(0)
+            team.set_div_wins_zero()
+            team.set_outcomes([])
+            team.set_sos(0.0)
             team.set_i_skill_level()
+            # team.set_win_level_zero()
 
         for team in League.AFC.North.get_teams():
-            team.prev_division_rank = team.division_rank
-            team.prev_szn_rank = team.league_rank
-            team.division_rank = 0
-            team.conference_rank = 0
-            team.league_rank = 0
-            team.div_wins = 0
-            team.outcomes = []
+            team.set_prev_division_rank(team.division_rank)
+            team.set_prev_szn_rank(team.league_rank)
+            team.set_division_rank(0)
+            team.set_conference_rank(0)
+            team.set_league_rank(0)
+            team.set_div_wins_zero()
+            team.set_outcomes([])
+            team.set_sos(0.0)
             team.set_i_skill_level()
+            # team.set_win_level_zero()
 
         for team in League.AFC.South.get_teams():
-            team.prev_division_rank = team.division_rank
-            team.prev_szn_rank = team.league_rank
-            team.division_rank = 0
-            team.conference_rank = 0
-            team.league_rank = 0
-            team.div_wins = 0
-            team.outcomes = []
+            team.set_prev_division_rank(team.division_rank)
+            team.set_prev_szn_rank(team.league_rank)
+            team.set_division_rank(0)
+            team.set_conference_rank(0)
+            team.set_league_rank(0)
+            team.set_div_wins_zero()
+            team.set_outcomes([])
+            team.set_sos(0.0)
             team.set_i_skill_level()
+            # team.set_win_level_zero()
 
         for team in League.AFC.West.get_teams():
-            team.prev_division_rank = team.division_rank
-            team.prev_szn_rank = team.league_rank
-            team.division_rank = 0
-            team.conference_rank = 0
-            team.league_rank = 0
-            team.div_wins = 0
-            team.outcomes = []
+            team.set_prev_division_rank(team.division_rank)
+            team.set_prev_szn_rank(team.league_rank)
+            team.set_division_rank(0)
+            team.set_conference_rank(0)
+            team.set_league_rank(0)
+            team.set_div_wins_zero()
+            team.set_outcomes([])
+            team.set_sos(0.0)
             team.set_i_skill_level()
+            # team.set_win_level_zero()
 
         # NFC
         for team in League.NFC.East.get_teams():
-            team.prev_division_rank = team.division_rank
-            team.prev_szn_rank = team.league_rank
-            team.division_rank = 0
-            team.conference_rank = 0
-            team.league_rank = 0
-            team.div_wins = 0
-            team.outcomes = []
+            team.set_prev_division_rank(team.division_rank)
+            team.set_prev_szn_rank(team.league_rank)
+            team.set_division_rank(0)
+            team.set_conference_rank(0)
+            team.set_league_rank(0)
+            team.set_div_wins_zero()
+            team.set_outcomes([])
+            team.set_sos(0.0)
             team.set_i_skill_level()
+            # team.set_win_level_zero()
 
         for team in League.NFC.North.get_teams():
-            team.prev_division_rank = team.division_rank
-            team.prev_szn_rank = team.league_rank
-            team.division_rank = 0
-            team.conference_rank = 0
-            team.league_rank = 0
-            team.div_wins = 0
-            team.outcomes = []
+            team.set_prev_division_rank(team.division_rank)
+            team.set_prev_szn_rank(team.league_rank)
+            team.set_division_rank(0)
+            team.set_conference_rank(0)
+            team.set_league_rank(0)
+            team.set_div_wins_zero()
+            team.set_outcomes([])
+            team.set_sos(0.0)
             team.set_i_skill_level()
+            # team.set_win_level_zero()
 
         for team in League.NFC.South.get_teams():
-            team.prev_division_rank = team.division_rank
-            team.prev_szn_rank = team.league_rank
-            team.division_rank = 0
-            team.conference_rank = 0
-            team.league_rank = 0
-            team.div_wins = 0
-            team.outcomes = []
+            team.set_prev_division_rank(team.division_rank)
+            team.set_prev_szn_rank(team.league_rank)
+            team.set_division_rank(0)
+            team.set_conference_rank(0)
+            team.set_league_rank(0)
+            team.set_div_wins_zero()
+            team.set_outcomes([])
+            team.set_sos(0.0)
             team.set_i_skill_level()
+            # team.set_win_level_zero()
 
         for team in League.NFC.West.get_teams():
-            team.prev_division_rank = team.division_rank
-            team.prev_szn_rank = team.league_rank
-            team.division_rank = 0
-            team.conference_rank = 0
-            team.league_rank = 0
-            team.div_wins = 0
-            team.outcomes = []
+            team.set_prev_division_rank(team.division_rank)
+            team.set_prev_szn_rank(team.league_rank)
+            team.set_division_rank(0)
+            team.set_conference_rank(0)
+            team.set_league_rank(0)
+            team.set_div_wins_zero()
+            team.set_outcomes([])
+            team.set_sos(0.0)
             team.set_i_skill_level()
+            # team.set_win_level_zero()
 
         print('Reset Team Season Data')
 
