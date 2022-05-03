@@ -141,4 +141,10 @@ for trial in outs:
 
 # print(outs)
 print(trials,'trials in',end-start,'\n')
-pprint.pprint(results)
+# pprint.pprint(results)
+
+probs = {}
+for key in results.keys():
+    probs[key] = [round(results[key][0]/(trials*3),3),round(results[key][1]/(trials*3),3),round(results[key][2]/(trials*3),3)]
+
+pprint.pprint(probs)
