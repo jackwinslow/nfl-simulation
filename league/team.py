@@ -99,7 +99,12 @@ class Team:
             elif 92 <= weeks <= 97:
                 arr[inj] = random.randint(10,12)
             else:
+<<<<<<< HEAD
                 arr[inj] = random.randint(13,18)
+=======
+                weeks = random.randint(13,18)
+            arr[inj] = weeks
+>>>>>>> 7f43ca9fe53b7948e8b60dba4611808850638008
             #reduce health level based on whether starter, backup, or other is injured
             if inj <= 21:
                 health_level -= 10
