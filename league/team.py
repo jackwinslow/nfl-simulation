@@ -68,12 +68,12 @@ class Team:
         health_level = self.get_health_level()
         arr = self.get_injuries()
         for j in arr:
-            if j[1] > 0:
-                j[1] -= 1
-                if j[1] == 0:
-                    if j[0] <= 21:
+            if j > 0:
+                j -= 1
+                if j == 0:
+                    if j <= 21:
                         health_level += 10
-                    elif 22 <= j[0] <= 39:
+                    elif 22 <= j <= 39:
                         health_level += 3
                     else:
                         health_level += 1
@@ -84,12 +84,12 @@ class Team:
             selector = random.randint(0,4)
             if selector < 3:
                 inj = random.randint(0,21)
-                if arr[inj][1] == 0:
-                    inj = arr[inj]
+                if arr[inj] > 0:
+                    continue
             else:
                 inj = random.randint(22,52)
-                if arr[inj][1] == 0:
-                    inj = arr[inj]
+                if arr[inj] > 0:
+                    continue
             num_injured -= 1
             #set number of weeks out, with lower weeks more likely
             weeks = random.randint(1,100)
@@ -101,11 +101,16 @@ class Team:
                 weeks = random.randint(10,12)
             else:
                 weeks = random.randint(13,18)
+<<<<<<< HEAD
             inj[1] = weeks
+=======
+            print(type(weeks))
+            arr[inj] = weeks
+>>>>>>> dad700b3b4625950d93f4d4240f1e5a2682634a4
             #reduce health level based on whether starter, backup, or other is injured
-            if inj[0] <= 21:
+            if inj <= 21:
                 health_level -= 10
-            elif 22 <= inj[0] <= 39:
+            elif 22 <= inj <= 39:
                 health_level -= 3
             else:
                 health_level -= 1
@@ -116,16 +121,9 @@ class Team:
         
     def set_healthy(self):
         #run at beginning of season to set team to healthy
-        rows, cols = (53, 2)
         arr = []
-        for i in range(rows):
-            col = []
-            for j in range(cols):
-                if j == 0:
-                    col.append(i)
-                else:
-                    col.append(0)
-            arr.append(col)
+        for i in range(53):
+            arr[i] = 0
         self.health_level = 100
         self.injuries = arr
 
