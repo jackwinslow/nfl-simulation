@@ -21,7 +21,7 @@ def make_schedule(season):
     schedule.append(Week(season, "RANDOM", x))
     return schedule
 
-trials = 100
+trials = 1000
 
 def main():
     outs = []
@@ -148,21 +148,5 @@ for key in results.keys():
     probs[key] = [results[key][0]/(trials*3),results[key][1]/(trials*3),results[key][2]/(trials*3)]
 
 pprint.pprint(probs)
-print()
 
-for key in probs.keys():
-    print(key + ':')
-    try:
-        print('P(X >= 2|X >= 1) =',round(probs[key][1]/probs[key][0],5))
-    except:
-        print('P(X >= 2|X >= 1) =','0.0')
-    
-    try:
-        print('P(X = 3|X >= 1) =',round(probs[key][2]/probs[key][0],5))
-    except:
-        print('P(X = 3|X >= 1) =','0.0')
-
-    try:
-        print('P(X = 3|X >= 2) =',round(probs[key][2]/probs[key][1],5))
-    except:
-        print('P(X = 3|X >= 2) =','0.0')
+print(len(results.keys()))
