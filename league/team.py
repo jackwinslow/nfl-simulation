@@ -55,7 +55,70 @@ class Team:
         self.i_skill_level = self.improvement_level + prev_influence
 
     def set_health_level(self):
-        self.health_level += 1
+        health_level = self.get_health_level()
+        arr = self.get_injuries()
+        for j in arr:
+            if j[1] > 0:
+                j[1] -= 1
+                if j[1] == 0:
+                    if j[0] <= 21:
+                        health_level += 10
+                    elif 22 <= j[0] <= 39:
+                        health_level += 3
+                    else:
+                        health_level += 1
+        num_injured = random.randint(0,3)
+        while num_injured != 0:
+            #more likely for a starter to get injured
+            #can't get injured twice
+            selector = random.randint(0,4)
+            if selector < 3:
+                inj = random.randint(0,21)
+                if arr[inj][1] == 0:
+                    inj = arr[inj]
+            else:
+                inj = random.randint(22,52)
+                if arr[inj][1] == 0:
+                    inj = arr[inj]
+            num_injured -= 1
+            #set number of weeks out, with lower weeks more likely
+            weeks = random.randint(1,100)
+            if weeks <= 60:
+                weeks = random.randint(1,4)
+            elif 61 <= weeks <= 91:
+                weeks = random.randint(5,9)
+            elif 92 <= weeks <= 97:
+                weeks = random.randint(10,12)
+            else:
+                weeks = random.randint(13,18)
+            inj[1] = weeks
+            #reduce health level based on whether starter, backup, or other is injured
+            if inj[0] <= 21:
+                health_level -= 10
+            elif 22 <= inj[0] <= 39:
+                health_level -= 3
+            else:
+                health_level -= 1
+        self.health_level = health_level
+        self.injuries = arr
+
+
+        
+    def set_healthy(self):
+        #run at beginning of season to set team to healthy
+        rows, cols = (53, 2)
+        arr = []
+        for i in range(rows):
+            col = []
+            for j in range(cols):
+                if j == 0:
+                    col.append(i)
+                else:
+                    col.append(0)
+            arr.append(col)
+        self.health_level = 100
+        self.injuries = arr
+
 
     def set_homefield_advantage(self):
         self.homefield_advantage += 1
@@ -110,7 +173,7 @@ class Team:
     def set_prev_szn_rank(self, rank):
         self.prev_szn_rank = rank
 
-    def set_capaity(self, new_capacity):
+    def set_capacity(self, new_capacity):
         self.capacity_filled = new_capacity
 
     def get_outcomes(self):
@@ -161,6 +224,9 @@ class Team:
     def get_health_level(self):
         return self.health_level
 
+    def get_injuries(self):
+        return self.injuries
+    
     def get_wins(self):
         return len([x for x in self.outcomes if x > 0])
 
