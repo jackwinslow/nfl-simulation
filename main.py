@@ -91,17 +91,12 @@ def main():
             League.reset_data()
         outs.append(cur)
         reload(league)
-    print(outs)
+    return outs
 
 start = t.time()
-main()
+outs = main()
 end = t.time()
 
-<<<<<<< HEAD
-print()
-print((end-start)/60)
-print()
-=======
 results = {}
 
 for trial in outs:
@@ -147,4 +142,3 @@ for trial in outs:
 # print(outs)
 print(trials,'trials in',end-start,'\n')
 pprint.pprint(results)
->>>>>>> c682667029d4abc656931cf7459a43648d052371
