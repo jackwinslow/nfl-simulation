@@ -121,7 +121,25 @@ class Team:
 
 
     def set_homefield_advantage(self):
-        self.homefield_advantage += 1
+        name = self.get_name()
+        homefield_adv = 0
+        list = [['Cardinals', 62622/63400], ['Falcons', 67586/71000], ['Ravens', 70537/71008], 
+                ['Bills', 67816/71608], ['Panthers', 71906/74867], ['Bears', 60833/61500], 
+                ['Bengals', 60325/65515], ['Browns', 67431/67895], ['Cowboys', 93421/100000], 
+                ['Broncos', 76236/76500], ['Lions', 51522/65000], ['Packers', 77991/81441], 
+                ['Texans', 66811/71795], ['Colts', 62475/67000], ['Jaguars', 59968/67264], 
+                ['Chiefs', 73227/76416], ['Raiders', 61185/65000], ['Chargers', 70240/71000], 
+                ['Rams', 71598/72000], ['Dolphins', 64374/65326], ['Vikings', 66701/67000], 
+                ['Patriots', 65878/65900], ['Saints', 64929/74295], ['Giants', 73882/80242], 
+                ['Jets', 71676/82500], ['Eagles', 69796/70000], ['Steelers', 60488/68400], 
+                ['Fourty_Niners', 66670/68500], ['Seahawks', 68408/68740], ['Buccaneers', 65372/65890], 
+                ['Titans', 68566/69143], ['Commanders', 52751/82000]]
+        list = sorted(list, key = lambda l:l[1])
+        #will return ranking from 1 to 32 with higher number being stronger homefield advantage (Patriots having highest at 32)
+        for i in range(32):
+            if list[i][0] == name:
+                self.homefield_advantage = i+1
+                self.capacity_filled = list[i][1]
 
     def set_morale_level(self):
         self.morale_level += 1
