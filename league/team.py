@@ -1,4 +1,4 @@
-import random as r
+import random
 import numpy as np
 
 class Team:
@@ -171,6 +171,8 @@ class Team:
 
     def set_win_level(self, isHome):
         self.set_skill_level()
+        self.set_health_level()
+        self.set_homefield_advantage()
         self.win_level = self.skill_level
 
     def set_win_level_zero(self):
