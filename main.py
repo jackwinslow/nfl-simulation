@@ -5,6 +5,7 @@ from season.game import Game
 from season.playoffs import Playoffs
 from league.league import League
 from imp import reload
+import time as t
 
 """def main():
     rs = RegularSeason([Week([Game("Patriots","Jets"),Game("Bills","Giants"),Game("Dolphins","Rams")]),
@@ -27,10 +28,12 @@ def make_schedule(season):
     schedule.append(Week(season, "RANDOM", x))
     return schedule
 
-trials = 1000
+trials = 10
 
 def main():
+    outs = []
     for trial in range(trials):
+        cur = []
         for season in range(3):
             wk_count = 0
             for wk in make_schedule(season):
@@ -90,11 +93,18 @@ def main():
             NFC_champ = Playoffs(nfc_playoffs).get_conf_winner()
             SB_champ = Game(AFC_champ, NFC_champ).play_playoff_game(True)
             
-            print(SB_champ.get_name())
-
+            # print(SB_champ.get_name())
+            cur.append(SB_champ.get_name())
             League.reset_data()
+        outs.append(cur)
         reload(league)
         print()
+    print(outs)
 
-
+start = t.time()
 main()
+end = t.time()
+
+print()
+print(end-start)
+print()
