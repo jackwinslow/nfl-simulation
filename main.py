@@ -96,10 +96,6 @@ start = t.time()
 outs = main()
 end = t.time()
 
-database = {}
-for x in database:
-    database.update({f"{}":})
-
 print()
 print(end-start)
 print()
