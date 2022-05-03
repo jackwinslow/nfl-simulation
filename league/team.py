@@ -101,12 +101,7 @@ class Team:
                 weeks = random.randint(10,12)
             else:
                 weeks = random.randint(13,18)
-<<<<<<< HEAD
             inj[1] = weeks
-=======
-            print(type(weeks))
-            arr[inj] = weeks
->>>>>>> dad700b3b4625950d93f4d4240f1e5a2682634a4
             #reduce health level based on whether starter, backup, or other is injured
             if inj <= 21:
                 health_level -= 10
@@ -211,7 +206,7 @@ class Team:
 
     def set_win_level(self, isHome):
         self.set_skill_level()
-        #self.set_health_level()
+        self.set_health_level()
         self.set_homefield_advantage()
         self.set_morale_level()
         skill = 0.99 * self.skill_level
