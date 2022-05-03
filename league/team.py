@@ -140,7 +140,18 @@ class Team:
             if list[i][0] == name:
                 self.homefield_advantage = i+1
                 self.capacity_filled = list[i][1]
+    
+    def set_improvement_level(self):
+        picking_order = 33-prev_season_rank
+        # drafting factor
+        a = random.randint(0,99)
+        if (a >= 69): # the picks won't be bad, statistic that in all first round picks, 16.7% didn't play for that team, 32% were useless, 13.7% were poor players
+            m = 1+(1/(-a+100)) # multiplier that changes exponentially the closer a gets to 100 (99 being an all star/ hall of famer) highest value = 2
+        else: 
+            m = 1+(-1/(a**0.5)) ## players picked will range from bad to absolutely useless. wasting picks on major busts will tank the improvement level heavily
 
+        output = (m**3)*(( (0.031*prev_season_rank)+(1-(draft_rank+1000/1032)) )/2)
+    
     def set_morale_level(self,offseason,win,streak):
         out_morale = self.get_morale_level()
         if (offseason):
