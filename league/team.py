@@ -118,7 +118,7 @@ class Team:
         arr = []
         for i in range(53):
             arr.append(0)
-        self.health_level = 100
+        self.health_level = 100 / 32
         self.injuries = arr
 
 
