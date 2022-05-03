@@ -101,7 +101,7 @@ class Team:
                 weeks = random.randint(10,12)
             else:
                 weeks = random.randint(13,18)
-            inj[1] = weeks
+            arr[inj] = weeks
             #reduce health level based on whether starter, backup, or other is injured
             if inj <= 21:
                 health_level -= 10
