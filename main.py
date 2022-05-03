@@ -21,7 +21,7 @@ def make_schedule(season):
     schedule.append(Week(season, "RANDOM", x))
     return schedule
 
-trials = 100
+trials = 1000
 
 def main():
     outs = []
@@ -148,3 +148,5 @@ for key in results.keys():
     probs[key] = [round(results[key][0]/(trials*3),3),round(results[key][1]/(trials*3),3),round(results[key][2]/(trials*3),3)]
 
 pprint.pprint(probs)
+
+print(len(results.keys()))
