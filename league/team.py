@@ -141,8 +141,29 @@ class Team:
                 self.homefield_advantage = i+1
                 self.capacity_filled = list[i][1]
 
-    def set_morale_level(self):
-        self.morale_level += 1
+    def set_morale_level(self,offseason,win,streak):
+ 
+        out_morale = self.get_morale_level()
+        if (offseason):
+            win, streak = False, 0
+            if (1 >= r.randint(0,4)):
+                major_event_factor = np.random.normal(0,2,None)/10
+                out_morale+=major_event_factor
+            i = self.get_improvement_level()
+            out_morale = out_morale*(1-i) +i
+        
+        else:
+            previous_game_factor = r.uniform(1.18,1.2+(streak*0.012))
+            if (win):
+                out_morale*=previous_game_factor # generates a multiplier >= ~1.18
+            else:
+                out_morale*=(1-(previous_game_factor-1)) # generates a multiplier <= ~0.89
+
+            if (1 >= random.randint(0,2)): # random event simulation
+                major_event_factor = np.random.normal(0,1.5,None)/10
+                out_morale+=major_event_factor
+        self.morale_level = np.clip(out_morale,0.01,1)
+
 
     def set_record(self):
         win_count = len([w for w in self.outcomes.get_skill_level() if w > 0])
