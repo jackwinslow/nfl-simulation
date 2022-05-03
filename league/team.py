@@ -39,6 +39,8 @@ class Team:
         self.improvement_level = 0.0
         self.draft_rank = 0
 
+        self.last_change = 0
+
     """def __init__(self):
         self.name = None"""
     
@@ -59,7 +61,8 @@ class Team:
 
     def set_i_skill_level(self):
         prev_influence = 1.0 - (self.get_prev_szn_rank() / 34.0)
-        self.i_skill_level = self.improvement_level + prev_influence
+        self.set_improvement_level()
+        self.i_skill_level = (0.01) * self.improvement_level + prev_influence
 
     def set_health_level(self):
         health_level = self.get_health_level()
@@ -98,7 +101,6 @@ class Team:
                 weeks = random.randint(10,12)
             else:
                 weeks = random.randint(13,18)
-            print(type(weeks))
             inj[1] = weeks
             #reduce health level based on whether starter, backup, or other is injured
             if inj[0] <= 21:
@@ -150,35 +152,35 @@ class Team:
                 self.capacity_filled = list[i][1]
     
     def set_improvement_level(self):
-        picking_order = 33-self.prev_season_rank
+        picking_order = 33 - self.prev_szn_rank
         # drafting factor
-        a = random.randint(0,99)
+        a = random.randint(1,99)
         if (a >= 69): # the picks won't be bad, statistic that in all first round picks, 16.7% didn't play for that team, 32% were useless, 13.7% were poor players
-            m = 1+(1/(-a+100)) # multiplier that changes exponentially the closer a gets to 100 (99 being an all star/ hall of famer) highest value = 2
+            m = 1+(1/(-a+101)) # multiplier that changes exponentially the closer a gets to 100 (99 being an all star/ hall of famer) highest value = 2
         else: 
             m = 1+(-1/(a**0.5)) ## players picked will range from bad to absolutely useless. wasting picks on major busts will tank the improvement level heavily
 
-        self.improvement_level = (m**3)*(( (0.031*self.prev_season_rank)+(1-(self.draft_rank+1000/1032)) )/2)
+        self.improvement_level = (m**3)*(( (0.031*self.prev_szn_rank)+(1-(self.draft_rank+1000/1032)) )/2)
     
-    def set_morale_level(self,offseason,win,streak):
+    def set_last_change(self, week):
+        self.last_change = week
+    
+    def get_outcomes(self):
+        return self.outcomes
+    
+    def set_morale_level(self):
+        if len(self.outcomes) == 0: return
         out_morale = self.get_morale_level()
-        if (offseason):
-            win, streak = False, 0
-            if (1 >= random.randint(0,4)):
-                major_event_factor = np.random.normal(0,2,None)/10
-                out_morale+=major_event_factor
-            i = self.get_improvement_level()
-            out_morale = out_morale*(1-i) +i
+        streak = len(self.outcomes) - self.last_change
+        previous_game_factor = random.uniform(1.18,1.2+(streak*0.012))
+        if (self.outcomes[-1] > 0):
+            out_morale*=previous_game_factor # generates a multiplier >= ~1.18
         else:
-            previous_game_factor = random.uniform(1.18,1.2+(streak*0.012))
-            if (win):
-                out_morale*=previous_game_factor # generates a multiplier >= ~1.18
-            else:
-                out_morale*=(1-(previous_game_factor-1)) # generates a multiplier <= ~0.89
+            out_morale*=(1-(previous_game_factor-1)) # generates a multiplier <= ~0.89
 
-            if (1 >= random.randint(0,2)): # random event simulation
-                major_event_factor = np.random.normal(0,1.5,None)/10
-                out_morale+=major_event_factor
+        if (1 >= random.randint(0,2)): # random event simulation
+            major_event_factor = np.random.normal(0,1.5,None)/10
+            out_morale+=major_event_factor
         self.morale_level = np.clip(out_morale,0.01,1)
 
     def set_record(self):
@@ -188,6 +190,9 @@ class Team:
 
     def set_div_wins(self):
         self.div_wins += 1
+
+    def get_morale_level(self):
+        return self.morale_level
 
     def set_div_wins_zero(self):
         self.div_wins = 0
@@ -208,9 +213,14 @@ class Team:
 
     def set_win_level(self, isHome):
         self.set_skill_level()
-        self.set_health_level()
+        #self.set_health_level()
         self.set_homefield_advantage()
-        self.win_level = self.skill_level
+        self.set_morale_level()
+        skill = 0.99 * self.skill_level
+        home = 0.005 * self.homefield_advantage
+        morale = 0.005 * self.morale_level
+        # health_level = self.health_level
+        self.win_level = skill + home + morale # + health
 
     def set_win_level_zero(self):
         self.win_level = 0.0

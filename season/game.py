@@ -27,9 +27,19 @@ class Game:
         # Step 3 edit records and outcomes
         if home_W:
             home_WL *= -1
+            if len(self.home.get_outcomes()) > 0:
+                if self.home.get_outcomes()[-1] < 0:
+                    self.home.set_last_change(len(self.home.get_outcomes()))
+                if self.away.get_outcomes()[-1] > 0:
+                    self.away.set_last_change(len(self.away.get_outcomes()))
             if self.isDivG: self.home.set_div_wins()
         else:
             away_WL *= -1
+            if len(self.home.get_outcomes()) > 0:
+                if self.home.get_outcomes()[-1] > 0:
+                    self.home.set_last_change(len(self.home.get_outcomes()))
+                if self.away.get_outcomes()[-1] < 0:
+                    self.away.set_last_change(len(self.away.get_outcomes()))
             if self.isDivG: self.away.set_div_wins()
 
         self.home.append_outcomes(away_WL)
@@ -52,15 +62,29 @@ class Game:
         home_W = r.random() <= P_home_W
         
         # Step 3 edit records and outcomes
-        if home_W: home_WL *= -1
-        else: away_WL *= -1
+        if home_W:
+            home_WL *= -1
+            if len(self.home.get_outcomes()) > 0:
+                if self.home.get_outcomes()[-1] < 0:
+                    self.home.set_last_change(len(self.home.get_outcomes()))
+                if self.away.get_outcomes()[-1] > 0:
+                    self.away.set_last_change(len(self.away.get_outcomes()))
+            
+        else:
+            away_WL *= -1
+            if len(self.home.get_outcomes()) > 0:
+                if self.home.get_outcomes()[-1] > 0:
+                    self.home.set_last_change(len(self.home.get_outcomes()))
+                if self.away.get_outcomes()[-1] < 0:
+                    self.away.set_last_change(len(self.away.get_outcomes()))
+            
 
         self.home.append_outcomes(away_WL)
         self.away.append_outcomes(home_WL)
 
         # print(f"{self.away.get_name()} at {self.home.get_name()}")
         
-        return [self.home, self.away][0 if findWinner else 1] if home_W else [self.home, self.away][0 if findWinner else 1]
+        return [self.home, self.away][0 if findWinner else 1] if home_W else [self.away, self.home][0 if findWinner else 1]
         
 
         
