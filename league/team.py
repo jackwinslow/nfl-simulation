@@ -37,6 +37,7 @@ class Team:
         self.salary_cap = 0
 
         self.improvement_level = 0.0
+        self.draft_rank = 0
 
     """def __init__(self):
         self.name = None"""
@@ -49,6 +50,12 @@ class Team:
 
     def set_sos(self, sos):
         self.sos = sos
+
+    def get_draft_rank(self):
+        return self.draft_rank
+    
+    def set_draft_rank(self, rank):
+        self.draft_rank = rank
 
     def set_i_skill_level(self):
         prev_influence = 1.0 - (self.get_prev_szn_rank() / 34.0)
@@ -91,6 +98,7 @@ class Team:
                 weeks = random.randint(10,12)
             else:
                 weeks = random.randint(13,18)
+            print(type(weeks))
             inj[1] = weeks
             #reduce health level based on whether starter, backup, or other is injured
             if inj[0] <= 21:
@@ -142,7 +150,7 @@ class Team:
                 self.capacity_filled = list[i][1]
     
     def set_improvement_level(self):
-        picking_order = 33-prev_season_rank
+        picking_order = 33-self.prev_season_rank
         # drafting factor
         a = random.randint(0,99)
         if (a >= 69): # the picks won't be bad, statistic that in all first round picks, 16.7% didn't play for that team, 32% were useless, 13.7% were poor players
@@ -150,7 +158,7 @@ class Team:
         else: 
             m = 1+(-1/(a**0.5)) ## players picked will range from bad to absolutely useless. wasting picks on major busts will tank the improvement level heavily
 
-        output = (m**3)*(( (0.031*prev_season_rank)+(1-(draft_rank+1000/1032)) )/2)
+        self.improvement_level = (m**3)*(( (0.031*self.prev_season_rank)+(1-(self.draft_rank+1000/1032)) )/2)
     
     def set_morale_level(self,offseason,win,streak):
         out_morale = self.get_morale_level()
