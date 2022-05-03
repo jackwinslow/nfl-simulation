@@ -149,9 +149,10 @@ class Team:
         if (a >= 69): # the picks won't be bad, statistic that in all first round picks, 16.7% didn't play for that team, 32% were useless, 13.7% were poor players
             m = 1+(1/(-a+101)) # multiplier that changes exponentially the closer a gets to 100 (99 being an all star/ hall of famer) highest value = 2
         else: 
-            m = 1+(-1/(a**0.5)) ## players picked will range from bad to absolutely useless. wasting picks on major busts will tank the improvement level heavily
-
-        self.improvement_level = (m**3)*(((0.031*self.prev_szn_rank)+(1-(self.draft_rank+1000/1032)))/2)
+            m = 1+(-1/(a**0.9)) ## players picked will range from bad to absolutely useless. wasting picks on major busts will tank the improvement level heavily
+        out = (m**2.5)*( ( (1-(0.031*picking_order))*(1+(1-((self.draft_rank+8)/100))) )/2 ) ## new function, more bounded
+        self.improvement_level = np.clip(out,0.01,1)
+        # original function -> (m**3)*(((0.031*self.prev_szn_rank)+(1-(self.draft_rank+1000/1032)))/2)
     
     def set_last_change(self, week):
         self.last_change = week
