@@ -150,3 +150,21 @@ for key in results.keys():
 pprint.pprint(probs)
 
 print(len(results.keys()))
+print()
+
+for key in probs.keys():
+    print(key + ':')
+    try:
+        print('P(X >= 2|X >= 1) =',round(probs[key][1]/probs[key][0],5))
+    except:
+        print('P(X >= 2|X >= 1) =','0.0')
+    
+    try:
+        print('P(X = 3|X >= 1) =',round(probs[key][2]/probs[key][0],5))
+    except:
+        print('P(X = 3|X >= 1) =','0.0')
+
+    try:
+        print('P(X = 3|X >= 2) =',round(probs[key][2]/probs[key][1],5))
+    except:
+        print('P(X = 3|X >= 2) =','0.0')
