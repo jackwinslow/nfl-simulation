@@ -249,7 +249,7 @@ class Team:
         return self.name
 
     def get_morale(self):
-        return self.moral_level
+        return self.morale_level
 
     def get_record(self):
         return self.current_record
