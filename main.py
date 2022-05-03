@@ -6,6 +6,7 @@ from season.playoffs import Playoffs
 from league.league import League
 from importlib import reload
 import time as t
+import pprint
 
 def make_schedule(season):
     schedule = []
@@ -20,7 +21,7 @@ def make_schedule(season):
     schedule.append(Week(season, "RANDOM", x))
     return schedule
 
-trials = 10
+trials = 100
 
 def main():
     outs = []
@@ -96,6 +97,48 @@ start = t.time()
 outs = main()
 end = t.time()
 
-print()
-print(end-start)
-print()
+results = {}
+
+for trial in outs:
+    if trial[0] not in results.keys():
+        results[trial[0]] = [0,0,0]
+
+    if trial[1] not in results.keys():
+        results[trial[1]] = [0,0,0]
+
+    if trial[2] not in results.keys():
+        results[trial[2]] = [0,0,0]
+    
+    # All teams different
+    if trial[0] != trial[1] and trial[0] != trial[2] and trial[1] != trial[2]:
+        results[trial[0]][0] += 1
+        results[trial[1]][0] += 1
+        results[trial[2]][0] += 1
+
+    # First and second teams the same
+    if trial[0] == trial[1] and trial[0] != trial[2] and trial[1] != trial[2]:
+        results[trial[0]][0] += 1
+        results[trial[0]][1] += 1
+        results[trial[2]][0] += 1
+
+    # First and third teams the same
+    if trial[0] != trial[1] and trial[0] == trial[2] and trial[1] != trial[2]:
+        results[trial[0]][0] += 1
+        results[trial[0]][1] += 1
+        results[trial[1]][0] += 1
+
+    # Second and third teams the same
+    if trial[0] != trial[1] and trial[0] != trial[2] and trial[1] == trial[2]:
+        results[trial[1]][0] += 1
+        results[trial[1]][1] += 1
+        results[trial[0]][0] += 1
+
+    # All three teams the same
+    if trial[0] == trial[1] and trial[0] == trial[2] and trial[1] == trial[2]:
+        results[trial[0]][0] += 1
+        results[trial[0]][1] += 1
+        results[trial[0]][2] += 1
+
+# print(outs)
+print(trials,'trials in',end-start,'\n')
+pprint.pprint(results)
