@@ -20,7 +20,7 @@ def make_schedule(season):
     schedule.append(Week(season, "RANDOM", x))
     return schedule
 
-trials = 10
+trials = 100
 
 def main():
     outs = []
@@ -90,12 +90,12 @@ def main():
             League.reset_data()
         outs.append(cur)
         reload(league)
-    return outs
+    print(outs)
 
 start = t.time()
-outs = main()
+main()
 end = t.time()
 
 print()
-print(end-start)
+print((end-start)/60)
 print()
