@@ -78,7 +78,7 @@ class Team:
                     else:
                         health_level += 1
         num_injured = random.randint(0,3)
-        while num_injured != 0:
+        for x in range(num_injured):
             #more likely for a starter to get injured
             #can't get injured twice
             selector = random.randint(0,4)
@@ -90,18 +90,16 @@ class Team:
                 inj = random.randint(22,52)
                 if arr[inj] > 0:
                     continue
-            num_injured -= 1
             #set number of weeks out, with lower weeks more likely
             weeks = random.randint(1,100)
             if weeks <= 60:
-                weeks = random.randint(1,4)
+                arr[inj] = random.randint(1,4)
             elif 61 <= weeks <= 91:
-                weeks = random.randint(5,9)
+                arr[inj] = random.randint(5,9)
             elif 92 <= weeks <= 97:
-                weeks = random.randint(10,12)
+                arr[inj] = random.randint(10,12)
             else:
-                weeks = random.randint(13,18)
-            inj[1] = weeks
+                arr[inj] = random.randint(13,18)
             #reduce health level based on whether starter, backup, or other is injured
             if inj <= 21:
                 health_level -= 10
@@ -118,7 +116,7 @@ class Team:
         #run at beginning of season to set team to healthy
         arr = []
         for i in range(53):
-            arr[i] = 0
+            arr.append(0)
         self.health_level = 100
         self.injuries = arr
 
@@ -153,7 +151,7 @@ class Team:
         else: 
             m = 1+(-1/(a**0.5)) ## players picked will range from bad to absolutely useless. wasting picks on major busts will tank the improvement level heavily
 
-        self.improvement_level = (m**3)*(( (0.031*self.prev_szn_rank)+(1-(self.draft_rank+1000/1032)) )/2)
+        self.improvement_level = (m**3)*(((0.031*self.prev_szn_rank)+(1-(self.draft_rank+1000/1032)))/2)
     
     def set_last_change(self, week):
         self.last_change = week
@@ -209,11 +207,11 @@ class Team:
         self.set_health_level()
         self.set_homefield_advantage()
         self.set_morale_level()
-        skill = 0.99 * self.skill_level
-        home = 0.005 * self.homefield_advantage
-        morale = 0.005 * self.morale_level
-        # health_level = self.health_level
-        self.win_level = skill + home + morale # + health
+        skill = 0.95 * self.skill_level
+        morale = 0.05 * self.morale_level
+        health = 0.04 * self.health_level
+        home = 0.01 * self.homefield_advantage
+        self.win_level = skill + home + morale + health
 
     def set_win_level_zero(self):
         self.win_level = 0.0

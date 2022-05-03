@@ -90,11 +90,15 @@ def main():
             League.reset_data()
         outs.append(cur)
         reload(league)
-    print(outs)
+    return outs
 
 start = t.time()
-main()
+outs = main()
 end = t.time()
+
+database = {}
+for x in database:
+    database.update({f"{}":})
 
 print()
 print(end-start)
