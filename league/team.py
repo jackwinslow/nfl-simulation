@@ -62,7 +62,8 @@ class Team:
     def set_i_skill_level(self):
         prev_influence = 1.0 - (self.get_prev_szn_rank() / 34.0)
         self.set_improvement_level()
-        self.i_skill_level = (0.01) * self.improvement_level + prev_influence
+        self.i_skill_level = (0.05) * self.improvement_level + (0.95) * prev_influence
+        # self.i_skill_level = prev_influence
 
     def set_health_level(self):
         health_level = self.get_health_level()
@@ -107,7 +108,7 @@ class Team:
                 health_level -= 3
             else:
                 health_level -= 1
-        self.health_level = health_level
+        self.health_level = health_level / 32
         self.injuries = arr
 
 
@@ -117,7 +118,7 @@ class Team:
         arr = []
         for i in range(53):
             arr.append(0)
-        self.health_level = 100
+        self.health_level = 100 / 32
         self.injuries = arr
 
 
@@ -139,7 +140,7 @@ class Team:
         #will return ranking from 1 to 32 with higher number being stronger homefield advantage (Patriots having highest at 32)
         for i in range(32):
             if list[i][0] == name:
-                self.homefield_advantage = i+1
+                self.homefield_advantage = (i+1) / 32
                 self.capacity_filled = list[i][1]
     
     def set_improvement_level(self):
@@ -208,10 +209,10 @@ class Team:
         self.set_health_level()
         self.set_homefield_advantage()
         self.set_morale_level()
-        skill = 0.95 * self.skill_level
-        morale = 0.05 * self.morale_level
-        health = 0.04 * self.health_level
-        home = 0.01 * self.homefield_advantage
+        skill = 0.8 * self.skill_level
+        morale = 0.1 * self.morale_level
+        health = 0.05 * self.health_level
+        home = 0.05 * self.homefield_advantage
         self.win_level = skill + home + morale + health
 
     def set_win_level_zero(self):

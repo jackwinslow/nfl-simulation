@@ -142,12 +142,3 @@ for trial in outs:
 # print(outs)
 print(trials,'trials in',end-start,'\n')
 pprint.pprint(results)
-
-print('\n')
-
-for key in results.keys():
-    print()
-    print(key)
-    print('P(X >= 1):','\t',results[key][0]/trials)
-    print('P(X >= 2):','\t',results[key][1]/trials)
-    print('P(X = 3):','\t',results[key][2]/trials)
