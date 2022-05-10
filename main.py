@@ -21,7 +21,7 @@ def make_schedule(season):
     schedule.append(Week(season, "RANDOM", x))
     return schedule
 
-trials = 1000
+trials = 200
 
 def main():
     outs = []
@@ -34,32 +34,6 @@ def main():
                 for game in wk.get_games():
                     game.play_game()
                 wk_count += 1
-
-            # # AFC
-            # for team in League.AFC.East.get_teams():
-            #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
-
-            # for team in League.AFC.North.get_teams():
-            #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
-
-            # for team in League.AFC.South.get_teams():
-            #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
-
-            # for team in League.AFC.West.get_teams():
-            #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
-
-            # # NFC
-            # for team in League.NFC.East.get_teams():
-            #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
-
-            # for team in League.NFC.North.get_teams():
-            #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
-
-            # for team in League.NFC.South.get_teams():
-            #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
-
-            # for team in League.NFC.West.get_teams():
-            #     print(team.get_name(), ' - [', team.get_wins(), ',', team.get_losses(), ']', team.get_sos())
 
             league_rankings = League.set_league_rank()
             """for x in range(len(league_rankings)):
@@ -99,6 +73,7 @@ end = t.time()
 
 results = {}
 
+# Counting times each team won one, two, and three of the next Super Bowls after 20,000 3-season simulations
 for trial in outs:
     if trial[0] not in results.keys():
         results[trial[0]] = [0,0,0]
@@ -152,6 +127,7 @@ pprint.pprint(probs)
 print(len(results.keys()))
 print()
 
+# Calculating Conditional Probabilities by applying Bayes' Theorem to our data
 for key in probs.keys():
     print(key + ':')
     try:
